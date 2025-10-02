@@ -1,0 +1,52 @@
+{
+  "space": {
+    "none": {
+      "value": "0rem",
+      "type": "dimension"
+    },
+    "4xs": {
+      "value": "0.25rem",
+      "type": "dimension"
+    },
+    "3xs": {
+      "value": "0.5rem",
+      "type": "dimension"
+    },
+    "2xs": {
+      "value": "0.75rem",
+      "type": "dimension"
+    },
+    "xs": {
+      "value": "1rem",
+      "type": "dimension"
+    },
+    "sm": {
+      "value": "1.25rem",
+      "type": "dimension"
+    },
+    "md": {
+      "value": "1.5rem",
+      "type": "dimension"
+    },
+    "lg": {
+      "value": "2rem",
+      "type": "dimension"
+    },
+    "xl": {
+      "value": "2.5rem",
+      "type": "dimension"
+    },
+    "2xl": {
+      "value": "3rem",
+      "type": "dimension"
+    },
+    "3xl": {
+      "value": "4rem",
+      "type": "dimension"
+    },
+    "4xl": {
+      "value": "5rem",
+      "type": "dimension"
+    }
+  }
+}
