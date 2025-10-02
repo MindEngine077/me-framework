@@ -1,4 +1,8 @@
 {
+  "name": "me-framework",
+  "version": "1.0.0",
+  "description": "Mobile-first design system using Figma tokens → CSS variables",
+  "type": "module",
   "scripts": {
     "tokens:build": "node build-tokens.js"
   }
