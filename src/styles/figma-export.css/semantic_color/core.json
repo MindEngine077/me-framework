@@ -1,0 +1,126 @@
+{
+  "surface": {
+    "lightest": {
+      "value": "{surface.300}",
+      "type": "color"
+    },
+    "lighter": {
+      "value": "{surface.400}",
+      "type": "color"
+    },
+    "light": {
+      "value": "{surface.500}",
+      "type": "color"
+    },
+    "base": {
+      "value": "{surface.600}",
+      "type": "color"
+    },
+    "dark": {
+      "value": "{surface.700}",
+      "type": "color"
+    },
+    "darker": {
+      "value": "{surface.800}",
+      "type": "color"
+    },
+    "darkest": {
+      "value": "{surface.900}",
+      "type": "color"
+    }
+  },
+  "text": {
+    "lighter": {
+      "value": "{text.100}",
+      "type": "color"
+    },
+    "light": {
+      "value": "{text.200}",
+      "type": "color"
+    },
+    "base": {
+      "value": "{text.300}",
+      "type": "color"
+    },
+    "dark": {
+      "value": "{text.400}",
+      "type": "color"
+    },
+    "darker": {
+      "value": "{text.500}",
+      "type": "color"
+    }
+  },
+  "border": {
+    "base": {
+      "value": "{surface.400}",
+      "type": "color"
+    },
+    "light": {
+      "value": "{surface.300}",
+      "type": "color"
+    },
+    "dark": {
+      "value": "{surface.500}",
+      "type": "color"
+    }
+  },
+  "accent": {
+    "primary": {
+      "value": "{brand.primary.300}",
+      "type": "color"
+    },
+    "secondary": {
+      "value": "{brand.secondary.300}",
+      "type": "color"
+    }
+  },
+  "status": {
+    "success": {
+      "value": "{status.success.500}",
+      "type": "color"
+    },
+    "error": {
+      "value": "{status.error.500}",
+      "type": "color"
+    },
+    "info": {
+      "value": "{status.info.500}",
+      "type": "color"
+    },
+    "warning": {
+      "value": "{status.warning.500}",
+      "type": "color"
+    }
+  },
+  "heading": {
+    "base": {
+      "value": "{brand.primary.400}",
+      "type": "color"
+    },
+    "lighter": {
+      "value": "{brand.primary.200}",
+      "type": "color"
+    },
+    "light": {
+      "value": "{brand.primary.300}",
+      "type": "color"
+    },
+    "dark": {
+      "value": "{brand.primary.400}",
+      "type": "color"
+    },
+    "darker": {
+      "value": "{brand.primary.500}",
+      "type": "color"
+    },
+    "darkest": {
+      "value": "{brand.primary.600}",
+      "type": "color"
+    },
+    "lightest": {
+      "value": "{brand.primary.100}",
+      "type": "color"
+    }
+  }
+}
