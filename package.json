@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "tokens:build": "node build-tokens.js"
+  }
+}
