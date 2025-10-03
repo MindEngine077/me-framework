@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Design System Playground</title>
+    <link rel="stylesheet" href="src/styles/tokens.css" />
+    <link rel="stylesheet" href="src/styles/base.css" />
+    <link rel="stylesheet" href="src/styles/theme-dark.css" />
+    <link rel="stylesheet" href="src/ui/me-input/me-input.css" />
+    <link rel="stylesheet" href="src/ui/me-footnav/me-footnav.css" />
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: var(--font-family-base, system-ui, -apple-system, sans-serif);
+        width: 100%;
+        height: 100%;
+      }
+
+      .preview-page,
+      .preview-page * {
+        box-sizing: border-box;
+      }
+      .preview-page {
+        background: var(--surface-700, #0a1319);
+        padding: 2.5rem 5rem 2.5rem 5rem;
+        display: flex;
+        flex-direction: column;
+        gap: var(--null, 0rem);
+        align-items: center;
+        justify-content: center;
+        height: 67.5rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .container {
+        background: none;
+        border-style: dashed;
+        border-color: #e88791;
+        border-width: 0.0625rem;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: var(--null, 0rem);
+        align-items: center;
+        justify-content: center;
+        align-self: stretch;
+        flex: 1;
+        position: relative;
+        overflow: auto;
+      }
+      .showcase {
+        background: transparent;
+        border-radius: var(--component-height-padding-y-lg, 1.25rem);
+        border: 0.0625rem solid var(--forms-color-legend, #e88791);
+        display: block;
+        width: 393px;
+        height: 844px;
+        position: relative;
+        overflow: hidden;
+        padding: 0;
+        margin: 0;
+        box-shadow: var(--mobile-mockup-box-shadow, 2.1875rem 2.1875rem 3.75rem 0rem rgba(0, 0, 0, 0.4), -0.75rem -0.75rem 3.125rem 0rem rgba(255, 255, 255, 0.04), 0.3125rem 0.3125rem 2.5rem 0rem rgba(0, 0, 0, 0.1));
+      }
+
+      .showcase iframe {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: var(--component-height-padding-y-lg, 1.25rem);
+        margin: 0;
+        padding: 0;
+        background: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="preview-page">
+      <div class="container">
+        <div class="showcase">
+          <iframe src="https://embed.figma.com/proto/UZN8LLFNOmFN47oDJJpDaS/ME-%7C-Components?node-id=53-701&p=f&scaling=scale-down&content-scaling=responsive&page-id=5%3A2&starting-point-node-id=53%3A701&embed-host=share&hide-ui=1" allowfullscreen title="ME Framework Interactive Prototype"> </iframe>
+        </div>
+      </div>
+    </div>
+    <script type="module">
+      import { initMeButtons } from "./src/ui/me-button/me-button.js";
+      initMeButtons();
+    </script>
+  </body>
+</html>

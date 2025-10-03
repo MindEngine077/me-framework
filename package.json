@@ -4,10 +4,10 @@
   "description": "Mobile-first design system using Figma tokens and components",
   "type": "module",
   "scripts": {
-    "tokens:build": "node build-tokens.js",
-    "figma:scaffold": "node fetch-figma-components.js",
-    "figma:scaffold:enhanced": "node fetch-figma-components-enhanced.js",
-    "figma:sync": "node sync-figma.js"
+    "tokens:build": "node scripts/build-tokens.js",
+    "figma:scaffold": "node scripts/fetch-figma-components-enhanced.js",
+    "dev": "python -m http.server 8080",
+    "start": "python -m http.server 8080"
   },
   "dependencies": {
     "dotenv": "^16.4.5",

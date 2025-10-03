@@ -18,30 +18,16 @@
         font-family: var(--font-family-base, system-ui, -apple-system, sans-serif);
         background: var(--background-base, #0a0a0f);
         color: var(--text-primary, #ffffff);
-        overflow: hidden;
-        he      // Test button - adds statusbar + topnav directly
-      document.getElementById("btn-test").addEventListener("click", () => {
-        const statusbar = COMPONENTS.find(c => c.name === "statusbar");
-        const topnav = COMPONENTS.find(c => c.name === "topnav");
-        if (statusbar) {
-          addComponentToPreview(statusbar);
-          log("🧪 Added Status Bar", "success");
-        }
-        if (topnav) {
-          setTimeout(() => {
-            addComponentToPreview(topnav);
-            log("🧪 Added Top Nav", "success");
-          }, 100);
-        }
-      });0vh;
+        overflow: auto;
+        min-height: 100vh;
       }
 
       /* Main Layout */
       .playground {
         display: grid;
         grid-template-columns: 320px 1fr 400px;
-        grid-template-rows: 60px 1fr;
-        height: 100vh;
+        grid-template-rows: 60px auto;
+        min-height: 100vh;
         gap: 0;
       }
 
@@ -125,10 +111,12 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         background: var(--background-base, #0a0a0f);
         padding: var(--space-xl, 32px);
         position: relative;
+        overflow-y: auto;
+        min-height: calc(100vh - 60px);
       }
 
       .device-frame {
@@ -408,43 +396,36 @@
   <link rel='stylesheet' href='src/styles/base.css'>
   <link rel='stylesheet' href='src/styles/theme-dark.css'>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-    html {
-      width: 100%;
-      min-height: 100%;
-      overflow-y: auto;
-      overflow-x: hidden;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; height: 100%; overflow: hidden; }
     body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      min-height: 100%;
       background: var(--background-base, #0a0a0f);
       color: var(--text-primary, #ffffff);
       font-family: var(--font-family-base, system-ui, -apple-system, sans-serif);
-      display: flex;
-      flex-direction: column;
+    }
+    #app-container {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
       overflow-x: hidden;
       -webkit-overflow-scrolling: touch;
     }
     .drop-zone {
-      flex: 1;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       padding: 40px 20px;
       text-align: center;
-      min-height: 100vh;
     }
   </style>
 </head>
 <body>
-  <div class='drop-zone'>
-    👆 Drag components here to preview
+  <div id='app-container'>
+    <div class='drop-zone'>
+      👆 Click components to add
+    </div>
   </div>
 </body>
 </html>"
@@ -453,9 +434,9 @@
         </div>
 
         <div class="device-controls">
-          <button class="btn btn-icon" id="btn-test" title="Test: Add Header">🧪 Test</button>
+          <button class="btn btn-icon" id="btn-quick-build" title="Quick Build: Full Layout">⚡ Build</button>
           <button class="btn btn-icon btn-secondary" id="btn-refresh" title="Refresh">↻</button>
-          <button class="btn btn-icon btn-secondary" id="btn-fullscreen" title="Fullscreen">⛶</button>
+          <button class="btn btn-icon btn-secondary" id="btn-clear" title="Clear All">🗑️</button>
         </div>
       </main>
 
@@ -487,6 +468,13 @@
     <script type="module">
       // Available components - REAL FIGMA COMPONENTS
       const COMPONENTS = [
+        {
+          name: "safe-top",
+          title: "📱 Safe Area Top",
+          desc: "iPhone safe area (44px notch space)",
+          html: `<div class="safe-top"></div>`,
+          css: `.safe-top { display: flex; align-items: center; justify-content: center; width: 100%; height: 44px; background: transparent; }`,
+        },
         {
           name: "statusbar",
           title: "📱 Status Bar",
@@ -599,21 +587,31 @@
         {
           name: "main-layout",
           title: "📄 Main Content Area",
-          desc: "Main > Section > Container > Content",
+          desc: "Main > Section > Container > Content (scrollable)",
           html: `<div class="main">
   <div class="section">
     <div class="container">
       <div class="content">
-        <h2 style="color: var(--text-primary, #fff); margin: 0; font-size: 24px;">Content Area</h2>
-        <p style="color: var(--text-secondary, rgba(255,255,255,0.7)); margin: 8px 0;">Add your content here...</p>
+        <h2 style="color: var(--text-primary, #fff); margin: 0 0 16px 0; font-size: 24px;">Content Area</h2>
+        <p style="color: var(--text-secondary, rgba(255,255,255,0.7)); margin: 0 0 12px 0; line-height: 1.6;">This is a scrollable content area. Add multiple items to test scrolling behavior.</p>
+        <div style="width: 100%; height: 200px; background: rgba(92,110,248,0.1); border: 1px dashed #5c6ef8; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 12px 0;">
+          <span style="color: rgba(255,255,255,0.5);">Content Block 1</span>
+        </div>
+        <div style="width: 100%; height: 200px; background: rgba(92,110,248,0.1); border: 1px dashed #5c6ef8; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 12px 0;">
+          <span style="color: rgba(255,255,255,0.5);">Content Block 2</span>
+        </div>
+        <div style="width: 100%; height: 200px; background: rgba(92,110,248,0.1); border: 1px dashed #5c6ef8; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin: 12px 0;">
+          <span style="color: rgba(255,255,255,0.5);">Content Block 3</span>
+        </div>
+        <p style="color: var(--text-secondary, rgba(255,255,255,0.5)); margin: 20px 0 0 0; font-size: 14px;">👆 Scroll to see more content</p>
       </div>
     </div>
   </div>
 </div>`,
-          css: `.main { padding: 0 16px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; justify-content: flex-start; width: 100%; height: auto; min-height: 300px; flex: 1; overflow-y: auto; }
-.section { padding: 16px 0; display: flex; flex-direction: column; gap: 16px; align-items: flex-start; justify-content: flex-start; width: 100%; flex: 1; }
-.container { padding: 0 16px; display: flex; flex-direction: column; gap: 0; align-items: center; justify-content: flex-start; width: 100%; flex: 1; }
-.content { border-radius: 12px; padding: 0 16px; display: flex; flex-direction: column; gap: 12px; align-items: center; justify-content: flex-start; width: 100%; flex: 1; }`,
+          css: `.main { padding: 16px; width: 100%; min-height: 600px; }
+.section { width: 100%; }
+.container { width: 100%; }
+.content { width: 100%; padding: 20px; }`,
         },
         {
           name: "safe-bottom",
@@ -689,15 +687,20 @@
       function addComponentToPreview(component) {
         const iframeDoc = previewIframe.contentDocument;
 
+        // Get or create app container
+        let appContainer = iframeDoc.querySelector("#app-container");
+        if (!appContainer) {
+          appContainer = iframeDoc.body;
+        }
+
         // Remove drop zone if exists
         const dropZone = iframeDoc.querySelector(".drop-zone");
         if (dropZone) dropZone.remove();
 
         // Add component HTML
-        const container = iframeDoc.body;
         const tempDiv = iframeDoc.createElement("div");
         tempDiv.innerHTML = component.html;
-        container.appendChild(tempDiv.firstElementChild);
+        appContainer.appendChild(tempDiv.firstElementChild);
 
         // Add component CSS
         if (component.css) {
@@ -798,13 +801,29 @@
         log("🔄 Playground reset", "info");
       });
 
-      // Test button - adds a header directly
-      document.getElementById("btn-test").addEventListener("click", () => {
-        const testComponent = COMPONENTS.find((c) => c.name === "me-header");
-        if (testComponent) {
-          addComponentToPreview(testComponent);
-          log("🧪 Test component added (me-header)", "success");
-        }
+      // Quick Build - adds complete layout
+      document.getElementById("btn-quick-build").addEventListener("click", () => {
+        const components = ["safe-top", "statusbar", "topnav", "header", "main-layout", "footnav", "safe-bottom"];
+        components.forEach((name, index) => {
+          setTimeout(() => {
+            const comp = COMPONENTS.find((c) => c.name === name);
+            if (comp) {
+              addComponentToPreview(comp);
+              log(`⚡ Added ${comp.title}`, "success");
+            }
+          }, index * 100);
+        });
+        log("⚡ Building complete layout...", "info");
+      });
+
+      // Clear all
+      document.getElementById("btn-clear").addEventListener("click", () => {
+        currentHTML = "";
+        currentCSS = "";
+        currentJS = "";
+        previewIframe.srcdoc = previewIframe.getAttribute("srcdoc");
+        updateEditor();
+        log("🗑️ Cleared all components", "info");
       });
 
       // Refresh preview
