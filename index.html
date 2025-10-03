@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Design System Playground</title>
+    <link rel="stylesheet" href="src/styles/tokens.css">
+    <link rel="stylesheet" href="src/styles/base.css">
+    <link rel="stylesheet" href="src/styles/theme-dark.css">
+    <link rel="stylesheet" href="src/ui/me-button/me-button.css">
+  </head>
+  <body>
+    <main class="l-container l-stack">
+      <h1>Component Demo</h1>
+
+      <!-- Buttons using tokens -->
+      <button class="me-button" type="button">Primary</button>
+      <button class="me-button me-button--secondary" type="button">Secondary</button>
+      <button class="me-button me-button--ghost" type="button">Ghost</button>
+    </main>
+
+    <script type="module">
+      import { initMeButtons } from './src/ui/me-button/me-button.js';
+      initMeButtons();
+    </script>
+  </body>
+</html>
