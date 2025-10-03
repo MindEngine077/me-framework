@@ -7,6 +7,106 @@
 @import "../../styles/tokens.css";
 @import "../../styles/base.css";
 
+.safe-top,
+.safe-top * {
+  box-sizing: border-box;
+}
+.safe-top {
+  display: flex;
+  flex-direction: row;
+  gap: var(--null, 0px);
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: var(--safe-area-top, 44px);
+  position: relative;
+  overflow: hidden;
+}
+.statusbar {
+  padding: 8px 18px 8px 18px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  width: 360px;
+  position: relative;
+  overflow: hidden;
+}
+.hour-notifications {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.hour {
+  color: var(--text-300, #fffef0);
+  text-align: left;
+  font-family: "NoirPro-Regular", sans-serif;
+  font-size: 11px;
+  line-height: 150%;
+  font-weight: 400;
+  position: relative;
+}
+.whats-app-icon {
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+  position: relative;
+  overflow: visible;
+}
+.functions {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.alarme {
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+  position: relative;
+  overflow: visible;
+}
+.wifi-signal {
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+  position: relative;
+  overflow: visible;
+}
+.battery {
+  display: flex;
+  flex-direction: row;
+  gap: 0px;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.battery-full {
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+  position: relative;
+  overflow: visible;
+}
+.percent {
+  color: var(--text-300, #fffef0);
+  text-align: right;
+  font-family: "NoirPro-Regular", sans-serif;
+  font-size: 11px;
+  line-height: 150%;
+  font-weight: 400;
+  position: relative;
+}
+
+
 /* Component styles - customize based on Figma design */
 .me-safe-top {
   /* Layout */

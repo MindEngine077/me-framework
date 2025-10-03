@@ -19,7 +19,21 @@
         background: var(--background-base, #0a0a0f);
         color: var(--text-primary, #ffffff);
         overflow: hidden;
-        height: 100vh;
+        he      // Test button - adds statusbar + topnav directly
+      document.getElementById("btn-test").addEventListener("click", () => {
+        const statusbar = COMPONENTS.find(c => c.name === "statusbar");
+        const topnav = COMPONENTS.find(c => c.name === "topnav");
+        if (statusbar) {
+          addComponentToPreview(statusbar);
+          log("🧪 Added Status Bar", "success");
+        }
+        if (topnav) {
+          setTimeout(() => {
+            addComponentToPreview(topnav);
+            log("🧪 Added Top Nav", "success");
+          }, 100);
+        }
+      });0vh;
       }
 
       /* Main Layout */
@@ -399,20 +413,20 @@
     }
     html {
       width: 100%;
-      height: 100%;
-      overflow: hidden;
+      min-height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
     }
     body {
       margin: 0;
       padding: 0;
       width: 100%;
-      height: 100%;
+      min-height: 100%;
       background: var(--background-base, #0a0a0f);
       color: var(--text-primary, #ffffff);
       font-family: var(--font-family-base, system-ui, -apple-system, sans-serif);
       display: flex;
       flex-direction: column;
-      overflow-y: auto;
       overflow-x: hidden;
       -webkit-overflow-scrolling: touch;
     }
@@ -424,7 +438,7 @@
       justify-content: center;
       padding: 40px 20px;
       text-align: center;
-      min-height: 100%;
+      min-height: 100vh;
     }
   </style>
 </head>
@@ -433,8 +447,8 @@
     👆 Drag components here to preview
   </div>
 </body>
-</html>">
-            </iframe>
+</html>"
+            ></iframe>
           </div>
         </div>
 
@@ -471,78 +485,148 @@
     </div>
 
     <script type="module">
-      // Available components
+      // Available components - REAL FIGMA COMPONENTS
       const COMPONENTS = [
         {
-          name: "me-input",
-          title: "Input Field",
-          desc: "Text input with validation",
-          html: `<div class="me-input">
-  <label class="me-input-label">Email</label>
-  <input type="email" class="me-input-field" placeholder="Enter your email">
-</div>`,
-          css: `@import "src/ui/me-input/me-input.css";`,
-        },
-        {
-          name: "me-header",
-          title: "Header",
-          desc: "App header with navigation",
-          html: `<header class="me-header">
-  <div class="me-header-content">
-    <h1>My App</h1>
+          name: "statusbar",
+          title: "📱 Status Bar",
+          desc: "iPhone status bar with time, icons",
+          html: `<div class="statusbar">
+  <div class="hour-notifications">
+    <div class="hour">09:41</div>
+    <img class="whats-app-icon" src="src/ui/icons/name-fa7-solid-message.svg" alt="Message" />
   </div>
-</header>`,
-          css: `@import "src/ui/me-header/me-header.css";`,
-        },
-        {
-          name: "me-footnav",
-          title: "Footer Navigation",
-          desc: "Bottom navigation bar",
-          html: `<nav class="me-footnav">
-  <a href="#" class="me-footnav-item">
-    <img src="src/ui/icons/name-fa7-solid-house.svg" class="icon">
-    <span>Home</span>
-  </a>
-  <a href="#" class="me-footnav-item">
-    <img src="src/ui/icons/name-fa7-solid-calendar.svg" class="icon">
-    <span>Schedule</span>
-  </a>
-</nav>`,
-          css: `@import "src/ui/me-footnav/me-footnav.css";`,
-        },
-        {
-          name: "me-button",
-          title: "Button",
-          desc: "Interactive button",
-          html: `<button class="me-button me-button-primary">
-  Click Me
-</button>`,
-          css: `.me-button {
-  padding: var(--space-md, 16px) var(--space-lg, 24px);
-  background: var(--accent-primary, #5c6ef8);
-  color: var(--text-100, #ffffff);
-  border: none;
-  border-radius: var(--radius-md, 12px);
-  font-size: var(--font-size-body-md, 1rem);
-  cursor: pointer;
-  transition: all 120ms ease;
-}
-.me-button:hover {
-  filter: brightness(1.1);
-  transform: translateY(-1px);
-}`,
-        },
-        {
-          name: "icon-grid",
-          title: "Icon Grid",
-          desc: "Icon showcase grid",
-          html: `<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 20px;">
-  <img src="src/ui/icons/name-fa7-solid-house.svg" style="width: 32px; height: 32px; filter: brightness(0) invert(1);">
-  <img src="src/ui/icons/name-fa7-solid-calendar.svg" style="width: 32px; height: 32px; filter: brightness(0) invert(1);">
-  <img src="src/ui/icons/name-fa7-solid-user-large.svg" style="width: 32px; height: 32px; filter: brightness(0) invert(1);">
-  <img src="src/ui/icons/name-fa7-solid-bell.svg" style="width: 32px; height: 32px; filter: brightness(0) invert(1);">
+  <div class="functions">
+    <img class="alarme" src="src/ui/icons/name-fa7-solid-alarm-clock.svg" alt="Alarm" />
+    <img class="wifi-signal" src="src/ui/icons/name-fa7-solid-wifi.svg" alt="WiFi" />
+    <div class="battery">
+      <img class="battery-full" src="src/ui/icons/name-fa7-solid-battery-full.svg" alt="Battery" />
+      <div class="percent">100%</div>
+    </div>
+  </div>
 </div>`,
-          css: ``,
+          css: `.statusbar { padding: 8px 18px; display: flex; flex-direction: row; align-items: center; justify-content: space-between; width: 100%; }
+.hour-notifications, .functions { display: flex; gap: 4px; align-items: center; }
+.hour, .percent { color: var(--text-300, #fffef0); font-family: "NoirPro-Regular", sans-serif; font-size: 11px; line-height: 150%; }
+.statusbar img { width: 12px; height: 12px; filter: brightness(0) invert(1); }
+.battery { display: flex; gap: 0px; align-items: center; }`,
+        },
+        {
+          name: "topnav",
+          title: "🔝 Top Navigation",
+          desc: "Logo and notification bell",
+          html: `<div class="topnav">
+  <div class="touch-slots">
+    <div class="logo">
+      <img class="logo" src="src/ui/logo/logo.svg" alt="Logo" />
+    </div>
+  </div>
+  <div class="touch-slots2">
+    <div class="icon-box">
+      <img class="icons" src="src/ui/icons/name-fa7-solid-bell.svg" alt="Notifications" />
+    </div>
+  </div>
+</div>`,
+          css: `.topnav { padding: 0 16px; display: flex; flex-direction: row; align-items: center; justify-content: space-between; height: 56px; width: 100%; }
+.touch-slots { display: flex; align-items: center; width: 56px; height: 48px; }
+.touch-slots2 { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; }
+.icon-box { background: var(--surface-400, #15242c); border-radius: 9999px; padding: 4px; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.3), -2px -2px 12px 0px rgba(255,255,255,0.04); }
+.icon-box img { width: 16px; height: 16px; filter: brightness(0) invert(1); }
+.logo img { height: 22px; }`,
+        },
+        {
+          name: "header",
+          title: "📋 Header",
+          desc: "Menu and action buttons",
+          html: `<div class="header">
+  <div class="touch-slots2">
+    <div class="icon-box">
+      <img class="icons2" src="src/ui/icons/name-fa7-solid-bars.svg" alt="Menu" />
+    </div>
+  </div>
+  <div class="action-slots">
+    <div class="touch-slots2">
+      <div class="icon-box">
+        <img class="icons3" src="src/ui/icons/name-fa7-solid-magnifying-glass.svg" alt="Search" />
+      </div>
+    </div>
+    <div class="touch-slots2">
+      <div class="icon-box">
+        <img class="icons4" src="src/ui/icons/name-fa7-solid-plus.svg" alt="Add" />
+      </div>
+    </div>
+    <div class="touch-slots2">
+      <div class="icon-box">
+        <img class="icons5" src="src/ui/icons/name-fa7-solid-ellipsis.svg" alt="More" />
+      </div>
+    </div>
+  </div>
+</div>`,
+          css: `.header { border-bottom: 1px solid var(--surface-200, #233945); padding: 0 16px; display: flex; align-items: center; justify-content: space-between; height: 56px; width: 100%; }
+.action-slots { display: flex; gap: 8px; align-items: center; }`,
+        },
+        {
+          name: "footnav",
+          title: "🧭 Footer Navigation",
+          desc: "5-item bottom nav bar",
+          html: `<div class="footnav">
+  <div class="footnav-item">
+    <img src="src/ui/icons/name-fa7-solid-house.svg" alt="Home" />
+    <div class="label">Home</div>
+  </div>
+  <div class="footnav-item">
+    <img src="src/ui/icons/name-fa7-solid-user-tie.svg" alt="Shifts" />
+    <div class="label">Shifts</div>
+  </div>
+  <div class="footnav-item">
+    <img src="src/ui/icons/name-fa7-solid-fire-flame-curved.svg" alt="Activity" />
+    <div class="label">Activity</div>
+  </div>
+  <div class="footnav-item">
+    <img src="src/ui/icons/name-fa7-solid-clock.svg" alt="Time" />
+    <div class="label">Time</div>
+  </div>
+  <div class="footnav-item">
+    <img src="src/ui/icons/name-fa7-solid-gear.svg" alt="Settings" />
+    <div class="label">Settings</div>
+  </div>
+</div>`,
+          css: `.footnav { display: flex; flex-direction: row; align-items: flex-start; justify-content: space-evenly; width: 100%; padding: 12px 8px; background: rgba(0,0,0,0.9); border-top: 1px solid rgba(255,255,255,0.1); }
+.footnav-item { display: flex; flex-direction: column; gap: 4px; align-items: center; justify-content: center; min-width: 48px; cursor: pointer; }
+.footnav-item img { width: 20px; height: 20px; filter: brightness(0) invert(1); }
+.footnav-item .label { color: var(--text-300, #fffef0); font-family: "NoirPro-Regular", sans-serif; font-size: 10px; text-align: center; }`,
+        },
+        {
+          name: "main-layout",
+          title: "📄 Main Content Area",
+          desc: "Main > Section > Container > Content",
+          html: `<div class="main">
+  <div class="section">
+    <div class="container">
+      <div class="content">
+        <h2 style="color: var(--text-primary, #fff); margin: 0; font-size: 24px;">Content Area</h2>
+        <p style="color: var(--text-secondary, rgba(255,255,255,0.7)); margin: 8px 0;">Add your content here...</p>
+      </div>
+    </div>
+  </div>
+</div>`,
+          css: `.main { padding: 0 16px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; justify-content: flex-start; width: 100%; height: auto; min-height: 300px; flex: 1; overflow-y: auto; }
+.section { padding: 16px 0; display: flex; flex-direction: column; gap: 16px; align-items: flex-start; justify-content: flex-start; width: 100%; flex: 1; }
+.container { padding: 0 16px; display: flex; flex-direction: column; gap: 0; align-items: center; justify-content: flex-start; width: 100%; flex: 1; }
+.content { border-radius: 12px; padding: 0 16px; display: flex; flex-direction: column; gap: 12px; align-items: center; justify-content: flex-start; width: 100%; flex: 1; }`,
+        },
+        {
+          name: "safe-bottom",
+          title: "📱 Safe Bottom",
+          desc: "Home indicator bar",
+          html: `<div class="safe-bottom">
+  <div class="home-indicator">
+    <div class="home-indicator2"></div>
+  </div>
+</div>`,
+          css: `.safe-bottom { display: flex; align-items: center; justify-content: center; width: 100%; height: 24px; padding: 8px 0; }
+.home-indicator { display: flex; align-items: center; justify-content: center; width: 100%; }
+.home-indicator2 { background: rgba(255,255,255,0.3); border-radius: 100px; width: 134px; height: 5px; }`,
         },
       ];
 
