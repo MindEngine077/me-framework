@@ -1,0 +1,8 @@
+/* Dark theme mapping (default) */
+html[data-theme="dark"] {
+  --surface-base: var(--surface-600);
+  --text-base: var(--text-300);
+  --border-base: var(--border-base);
+  --accent-primary: var(--brand-primary-400);
+  --accent-secondary: var(--brand-secondary-400);
+}
