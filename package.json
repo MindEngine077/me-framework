@@ -1,9 +1,14 @@
 {
   "name": "me-framework",
   "version": "1.0.0",
-  "description": "Mobile-first design system using Figma tokens → CSS variables",
+  "description": "Mobile-first design system using Figma tokens and components",
   "type": "module",
   "scripts": {
-    "tokens:build": "node build-tokens.js"
+    "tokens:build": "node build-tokens.js",
+    "figma:scaffold": "node fetch-figma-components.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "node-fetch": "^3.3.2"
   }
 }
