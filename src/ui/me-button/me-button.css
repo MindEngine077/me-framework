@@ -1,0 +1,87 @@
+/* File: src/ui/me-button/me-button.css
+   Token-only styling (mobile-first). All values from tokens.css with safe fallbacks.
+   Naming: kebab-case + "me-" prefix. Variants via --.
+   Expected tokens (examples; fallbacks included):
+   --accent-primary, --accent-secondary
+   --text-100, --text-base
+   --border-base, --border-dark
+   --radius-md
+   --component-height-sm/md/lg, --space-sm/md
+   --font-size-body-md, --letter-spacing-xxs
+*/
+
+.me-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Touch target: mobile-first height; prefer tokens */
+  height: var(--component-height-md, 44px);
+  min-width: var(--component-min-width, 44px);
+  padding-inline: var(--space-md, 16px);
+  padding-block: 0;
+
+  background: var(--accent-primary, #5c6ef8);
+  color: var(--text-100, #ffffff);
+  border: 1px solid var(--border-base, rgba(255,255,255,0.12));
+  border-radius: var(--radius-md, 12px);
+
+  font-size: var(--font-size-body-md, 1rem);
+  letter-spacing: var(--letter-spacing-xxs, 0.01em);
+  line-height: 1;
+
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 120ms ease, filter 120ms ease, box-shadow 120ms ease;
+}
+
+/* Hover / active */
+.me-button:hover { filter: brightness(1.06); }
+.me-button:active { transform: translateY(1px) scale(0.99); }
+
+/* Focus visible (a11y) */
+.me-button:focus { outline: none; }
+.me-button:focus-visible {
+  /* If you have a focus/ring token, swap it here */
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent-primary, #5c6ef8) 40%, transparent);
+}
+
+/* Disabled */
+.me-button[disabled],
+.me-button.is-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Variants */
+.me-button--secondary {
+  background: var(--accent-secondary, #61b4b6);
+  color: var(--text-100, #ffffff);
+}
+
+.me-button--ghost {
+  background: transparent;
+  color: var(--text-base, #eaeaea);
+  border-color: var(--border-dark, rgba(255,255,255,0.08));
+}
+
+/* Slots */
+.me-button-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm, 8px);
+}
+
+/* Optional sizes */
+.me-button--sm {
+  height: var(--component-height-sm, 40px);
+  padding-inline: var(--space-sm, 12px);
+  font-size: var(--font-size-body-sm, 0.9375rem);
+}
+.me-button--lg {
+  height: var(--component-height-lg, 52px);
+  padding-inline: var(--space-lg, 20px);
+  font-size: var(--font-size-body-lg, 1.0625rem);
+}
