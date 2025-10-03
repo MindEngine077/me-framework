@@ -1,0 +1,128 @@
+/* File: src/ui/me-input/me-input.css
+   Component: me-input
+   Import design tokens and base styles
+*/
+
+/* Import design tokens from Token Studio */
+@import "../../styles/tokens.css";
+@import "../../styles/base.css";
+
+.input,
+.input * {
+    box-sizing: border-box;
+}
+
+.input {
+    background: var(--input-colors-color, #15242c);
+    border-radius: var(--input-layout-radius-base, 5px);
+    border-style: solid;
+    border-color: var(--input-colors-border-color, #29414e);
+    border-width: 1px;
+    padding: var(--input-layout-pad-y, 12px) var(--input-layout-pad-x, 24px) var(--input-layout-pad-y, 12px) var(--input-layout-pad-x, 24px);
+    display: flex;
+    flex-direction: row;
+    gap: var(--input-layout-gap, 16px);
+    align-items: center;
+    justify-content: flex-start;
+    width: 320px;
+    height: var(--input-layout-heigth, 48px);
+    position: relative;
+    box-shadow: var(--elevation-component-sm-box-shadow, 3px 3px 6px 0px rgba(0, 0, 0, 0.25));
+    overflow: hidden;
+}
+
+.icons {
+    flex-shrink: 0;
+    width: 12px;
+    height: var(--icon-xs, 12px);
+    position: relative;
+    overflow: visible;
+    aspect-ratio: 1;
+}
+
+.placeholder {
+    color: var(--input-colors-placeholder, #838995);
+    text-align: left;
+    font-family: var(--input-placeholder-font-family, 'NoirPro-Light', sans-serif);
+    font-size: var(--input-placeholder-font-size, 14px);
+    letter-spacing: var(--input-placeholder-letter-spacing, 0.5px);
+    font-weight: var(--input-placeholder-font-weight, 300);
+    position: relative;
+    flex: 1;
+}
+
+.icons2 {
+    flex-shrink: 0;
+    width: 12px;
+    height: var(--icon-xs, 12px);
+    position: relative;
+    overflow: visible;
+    aspect-ratio: 1;
+}
+
+/* Component styles - customize based on Figma design */
+.me-input {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Sizing - use tokens from Figma Variables */
+  height: var(--component-height-md, 44px);
+  min-width: var(--component-min-width, 44px);
+  padding-inline: var(--space-md, 16px);
+
+  /* Colors - use semantic tokens */
+  background: var(--accent-primary, #5c6ef8);
+  color: var(--text-100, #ffffff);
+  border: 1px solid var(--border-base, rgba(255, 255, 255, 0.12));
+  
+  /* Border radius */
+  border-radius: var(--radius-md, 12px);
+
+  /* Typography */
+  font-size: var(--font-size-body-md, 1rem);
+  letter-spacing: var(--letter-spacing-xxs, 0.01em);
+  line-height: 1;
+
+  /* Interactions */
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 120ms ease, filter 120ms ease, box-shadow 120ms ease;
+}
+
+/* Hover state */
+.me-input:hover {
+  filter: brightness(1.06);
+}
+
+/* Active state */
+.me-input:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+/* Focus styles */
+.me-input:focus {
+  outline: none;
+}
+
+.me-input:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent-primary, #5c6ef8) 40%, transparent);
+}
+
+/* Internal elements */
+.me-input-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm, 8px);
+}
+
+/* Variants - Add based on Figma component variants */
+/* Example:
+.me-input--primary { background: var(--accent-primary); }
+.me-input--secondary { background: var(--accent-secondary); }
+.me-input--ghost { background: transparent; }
+.me-input--small { height: var(--component-height-sm); }
+.me-input--large { height: var(--component-height-lg); }
+*/

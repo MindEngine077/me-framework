@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ME Framework - Mobile Playground 📱</title>
+    <link rel="stylesheet" href="src/styles/tokens.css" />
+    <link rel="stylesheet" href="src/styles/base.css" />
+    <link rel="stylesheet" href="src/styles/theme-dark.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: var(--font-family-base, system-ui, -apple-system, sans-serif);
+        background: var(--background-base, #0a0a0f);
+        color: var(--text-primary, #ffffff);
+        overflow: hidden;
+        height: 100vh;
+      }
+
+      /* Main Layout */
+      .playground {
+        display: grid;
+        grid-template-columns: 320px 1fr 400px;
+        grid-template-rows: 60px 1fr;
+        height: 100vh;
+        gap: 0;
+      }
+
+      /* Header */
+      .playground-header {
+        grid-column: 1 / -1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 var(--space-lg, 24px);
+        background: var(--surface-raised, rgba(255, 255, 255, 0.05));
+        border-bottom: 1px solid var(--border-base, rgba(255, 255, 255, 0.12));
+      }
+
+      .playground-logo {
+        display: flex;
+        align-items: center;
+        gap: var(--space-md, 16px);
+        font-size: var(--font-size-heading-sm, 1.25rem);
+        font-weight: 600;
+        color: var(--accent-primary, #5c6ef8);
+      }
+
+      .playground-actions {
+        display: flex;
+        gap: var(--space-sm, 8px);
+      }
+
+      /* Sidebar - Components */
+      .components-panel {
+        background: var(--surface-raised, rgba(255, 255, 255, 0.05));
+        border-right: 1px solid var(--border-base, rgba(255, 255, 255, 0.12));
+        overflow-y: auto;
+        padding: var(--space-lg, 24px);
+      }
+
+      .panel-title {
+        font-size: var(--font-size-body-lg, 1.125rem);
+        font-weight: 600;
+        margin-bottom: var(--space-md, 16px);
+        color: var(--accent-primary, #5c6ef8);
+      }
+
+      .component-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm, 8px);
+      }
+
+      .component-item {
+        padding: var(--space-md, 16px);
+        background: var(--surface-overlay, rgba(255, 255, 255, 0.03));
+        border: 1px solid var(--border-base, rgba(255, 255, 255, 0.12));
+        border-radius: var(--radius-sm, 8px);
+        cursor: grab;
+        transition: all 120ms ease;
+        user-select: none;
+      }
+
+      .component-item:hover {
+        background: var(--surface-overlay, rgba(255, 255, 255, 0.08));
+        transform: translateX(4px);
+      }
+
+      .component-item:active {
+        cursor: grabbing;
+      }
+
+      .component-name {
+        font-weight: 500;
+        margin-bottom: var(--space-xs, 4px);
+      }
+
+      .component-desc {
+        font-size: var(--font-size-body-xs, 0.75rem);
+        color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+      }
+
+      /* Center - Mobile Preview */
+      .preview-panel {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: var(--background-base, #0a0a0f);
+        padding: var(--space-xl, 32px);
+        position: relative;
+      }
+
+      .device-frame {
+        width: 390px;
+        height: 844px;
+        background: #1a1a1f;
+        border-radius: 50px;
+        padding: 12px;
+        box-shadow: 0 0 0 12px #2a2a2f, 0 0 0 14px rgba(255, 255, 255, 0.1), 0 20px 60px rgba(0, 0, 0, 0.5);
+        position: relative;
+      }
+
+      .device-notch {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 150px;
+        height: 28px;
+        background: #1a1a1f;
+        border-radius: 0 0 20px 20px;
+        z-index: 10;
+      }
+
+      .device-screen {
+        width: 100%;
+        height: 100%;
+        background: white;
+        border-radius: 40px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .preview-iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background: var(--background-base, #0a0a0f);
+        display: block;
+      }
+
+      /* Ensure iframe content is properly sized for mobile */
+      .device-screen {
+        width: 100%;
+        height: 100%;
+        background: var(--background-base, #0a0a0f);
+        border-radius: 40px;
+        overflow: auto;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .device-controls {
+        position: absolute;
+        bottom: var(--space-md, 16px);
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: var(--space-sm, 8px);
+        background: var(--surface-raised, rgba(255, 255, 255, 0.05));
+        padding: var(--space-sm, 8px);
+        border-radius: var(--radius-md, 12px);
+        border: 1px solid var(--border-base, rgba(255, 255, 255, 0.12));
+      }
+
+      /* Right Panel - Code Editor */
+      .editor-panel {
+        background: var(--surface-raised, rgba(255, 255, 255, 0.05));
+        border-left: 1px solid var(--border-base, rgba(255, 255, 255, 0.12));
+        display: flex;
+        flex-direction: column;
+      }
+
+      .editor-tabs {
+        display: flex;
+        gap: 2px;
+        background: var(--background-base, #0a0a0f);
+        padding: var(--space-sm, 8px);
+        border-bottom: 1px solid var(--border-base, rgba(255, 255, 255, 0.12));
+      }
+
+      .editor-tab {
+        padding: var(--space-sm, 8px) var(--space-md, 16px);
+        background: transparent;
+        border: none;
+        color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+        cursor: pointer;
+        border-radius: var(--radius-sm, 8px);
+        font-family: "Monaco", "Courier New", monospace;
+        font-size: var(--font-size-body-sm, 0.875rem);
+        transition: all 120ms ease;
+      }
+
+      .editor-tab:hover {
+        background: var(--surface-overlay, rgba(255, 255, 255, 0.05));
+      }
+
+      .editor-tab.active {
+        background: var(--accent-primary, #5c6ef8);
+        color: var(--text-100, #ffffff);
+      }
+
+      .editor-content {
+        flex: 1;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .code-editor {
+        flex: 1;
+        padding: var(--space-md, 16px);
+        background: #0d0d12;
+        font-family: "Monaco", "Courier New", monospace;
+        font-size: 13px;
+        color: #e8e8e8;
+        border: none;
+        resize: none;
+        overflow: auto;
+        line-height: 1.6;
+        tab-size: 2;
+      }
+
+      .code-editor:focus {
+        outline: none;
+      }
+
+      .editor-actions {
+        display: flex;
+        gap: var(--space-sm, 8px);
+        padding: var(--space-md, 16px);
+        background: var(--surface-raised, rgba(255, 255, 255, 0.05));
+        border-top: 1px solid var(--border-base, rgba(255, 255, 255, 0.12));
+      }
+
+      /* Buttons */
+      .btn {
+        padding: var(--space-sm, 8px) var(--space-md, 16px);
+        background: var(--accent-primary, #5c6ef8);
+        color: var(--text-100, #ffffff);
+        border: none;
+        border-radius: var(--radius-sm, 8px);
+        font-size: var(--font-size-body-sm, 0.875rem);
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 120ms ease;
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-xs, 4px);
+      }
+
+      .btn:hover {
+        filter: brightness(1.1);
+        transform: translateY(-1px);
+      }
+
+      .btn:active {
+        transform: translateY(0);
+      }
+
+      .btn-secondary {
+        background: var(--surface-overlay, rgba(255, 255, 255, 0.08));
+      }
+
+      .btn-success {
+        background: #10b981;
+      }
+
+      .btn-icon {
+        padding: var(--space-sm, 8px);
+        min-width: unset;
+      }
+
+      /* Console */
+      .console-panel {
+        height: 150px;
+        background: #0d0d12;
+        border-top: 1px solid var(--border-base, rgba(255, 255, 255, 0.12));
+        padding: var(--space-md, 16px);
+        overflow-y: auto;
+        font-family: "Monaco", "Courier New", monospace;
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .console-line {
+        margin-bottom: 4px;
+        opacity: 0.8;
+      }
+
+      .console-line.success {
+        color: #10b981;
+      }
+
+      .console-line.error {
+        color: #ef4444;
+      }
+
+      .console-line.info {
+        color: #60a5fa;
+      }
+
+      /* Drop Zone */
+      .drop-zone {
+        border: 2px dashed var(--border-base, rgba(255, 255, 255, 0.12));
+        border-radius: var(--radius-md, 12px);
+        padding: var(--space-lg, 24px);
+        text-align: center;
+        color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+        min-height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .drop-zone.active {
+        border-color: var(--accent-primary, #5c6ef8);
+        background: rgba(92, 110, 248, 0.1);
+      }
+
+      /* Scrollbar styling */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--surface-overlay, rgba(255, 255, 255, 0.2));
+        border-radius: 4px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: var(--surface-overlay, rgba(255, 255, 255, 0.3));
+      }
+    </style>
+  </head>
+  <body>
+    <div class="playground">
+      <!-- Header -->
+      <header class="playground-header">
+        <div class="playground-logo">📱 ME Framework Playground</div>
+        <div class="playground-actions">
+          <button class="btn btn-secondary" id="btn-reset">🔄 Reset</button>
+          <button class="btn btn-success" id="btn-export">💾 Export to Codebase</button>
+        </div>
+      </header>
+
+      <!-- Left: Components Library -->
+      <aside class="components-panel">
+        <h2 class="panel-title">📦 Components</h2>
+        <div class="component-list" id="component-list">
+          <!-- Components will be loaded here -->
+        </div>
+      </aside>
+
+      <!-- Center: Mobile Preview -->
+      <main class="preview-panel">
+        <div class="device-frame">
+          <div class="device-notch"></div>
+          <div class="device-screen">
+            <iframe
+              id="preview-iframe"
+              class="preview-iframe"
+              sandbox="allow-scripts allow-same-origin"
+              title="Mobile Preview"
+              srcdoc="<!DOCTYPE html>
+<html lang='en' data-theme='dark'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'>
+  <link rel='stylesheet' href='src/styles/tokens.css'>
+  <link rel='stylesheet' href='src/styles/base.css'>
+  <link rel='stylesheet' href='src/styles/theme-dark.css'>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--background-base, #0a0a0f);
+      color: var(--text-primary, #ffffff);
+      font-family: var(--font-family-base, system-ui, -apple-system, sans-serif);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+    .drop-zone {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      text-align: center;
+      min-height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class='drop-zone'>
+    👆 Drag components here to preview
+  </div>
+</body>
+</html>">
+            </iframe>
+          </div>
+        </div>
+
+        <div class="device-controls">
+          <button class="btn btn-icon" id="btn-test" title="Test: Add Header">🧪 Test</button>
+          <button class="btn btn-icon btn-secondary" id="btn-refresh" title="Refresh">↻</button>
+          <button class="btn btn-icon btn-secondary" id="btn-fullscreen" title="Fullscreen">⛶</button>
+        </div>
+      </main>
+
+      <!-- Right: Code Editor -->
+      <aside class="editor-panel">
+        <div class="editor-tabs">
+          <button class="editor-tab active" data-tab="html">HTML</button>
+          <button class="editor-tab" data-tab="css">CSS</button>
+          <button class="editor-tab" data-tab="js">JS</button>
+        </div>
+
+        <div class="editor-content">
+          <textarea id="code-editor" class="code-editor" spellcheck="false" placeholder="<!-- Your code will appear here -->"></textarea>
+
+          <div class="editor-actions">
+            <button class="btn" id="btn-apply">▶️ Apply Changes</button>
+            <button class="btn btn-secondary" id="btn-copy">📋 Copy Code</button>
+          </div>
+        </div>
+
+        <div class="console-panel" id="console">
+          <div class="console-line info">🚀 Playground ready</div>
+          <div class="console-line info">💡 Drag components from the left panel</div>
+          <div class="console-line info">✨ Edit code and click "Apply Changes"</div>
+        </div>
+      </aside>
+    </div>
+
+    <script type="module">
+      // Available components
+      const COMPONENTS = [
+        {
+          name: "me-input",
+          title: "Input Field",
+          desc: "Text input with validation",
+          html: `<div class="me-input">
+  <label class="me-input-label">Email</label>
+  <input type="email" class="me-input-field" placeholder="Enter your email">
+</div>`,
+          css: `@import "src/ui/me-input/me-input.css";`,
+        },
+        {
+          name: "me-header",
+          title: "Header",
+          desc: "App header with navigation",
+          html: `<header class="me-header">
+  <div class="me-header-content">
+    <h1>My App</h1>
+  </div>
+</header>`,
+          css: `@import "src/ui/me-header/me-header.css";`,
+        },
+        {
+          name: "me-footnav",
+          title: "Footer Navigation",
+          desc: "Bottom navigation bar",
+          html: `<nav class="me-footnav">
+  <a href="#" class="me-footnav-item">
+    <img src="src/ui/icons/name-fa7-solid-house.svg" class="icon">
+    <span>Home</span>
+  </a>
+  <a href="#" class="me-footnav-item">
+    <img src="src/ui/icons/name-fa7-solid-calendar.svg" class="icon">
+    <span>Schedule</span>
+  </a>
+</nav>`,
+          css: `@import "src/ui/me-footnav/me-footnav.css";`,
+        },
+        {
+          name: "me-button",
+          title: "Button",
+          desc: "Interactive button",
+          html: `<button class="me-button me-button-primary">
+  Click Me
+</button>`,
+          css: `.me-button {
+  padding: var(--space-md, 16px) var(--space-lg, 24px);
+  background: var(--accent-primary, #5c6ef8);
+  color: var(--text-100, #ffffff);
+  border: none;
+  border-radius: var(--radius-md, 12px);
+  font-size: var(--font-size-body-md, 1rem);
+  cursor: pointer;
+  transition: all 120ms ease;
+}
+.me-button:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}`,
+        },
+        {
+          name: "icon-grid",
+          title: "Icon Grid",
+          desc: "Icon showcase grid",
+          html: `<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 20px;">
+  <img src="src/ui/icons/name-fa7-solid-house.svg" style="width: 32px; height: 32px; filter: brightness(0) invert(1);">
+  <img src="src/ui/icons/name-fa7-solid-calendar.svg" style="width: 32px; height: 32px; filter: brightness(0) invert(1);">
+  <img src="src/ui/icons/name-fa7-solid-user-large.svg" style="width: 32px; height: 32px; filter: brightness(0) invert(1);">
+  <img src="src/ui/icons/name-fa7-solid-bell.svg" style="width: 32px; height: 32px; filter: brightness(0) invert(1);">
+</div>`,
+          css: ``,
+        },
+      ];
+
+      // State
+      let currentTab = "html";
+      let currentHTML = "";
+      let currentCSS = "";
+      let currentJS = "";
+
+      // Elements
+      const componentList = document.getElementById("component-list");
+      const previewIframe = document.getElementById("preview-iframe");
+      const codeEditor = document.getElementById("code-editor");
+      const consoleEl = document.getElementById("console");
+      const tabs = document.querySelectorAll(".editor-tab");
+
+      // Load components
+      function loadComponents() {
+        componentList.innerHTML = COMPONENTS.map(
+          (comp) => `
+        <div class="component-item" draggable="true" data-component='${JSON.stringify(comp)}'>
+          <div class="component-name">${comp.title}</div>
+          <div class="component-desc">${comp.desc}</div>
+        </div>
+      `
+        ).join("");
+
+        // Add drag listeners
+        document.querySelectorAll(".component-item").forEach((item) => {
+          item.addEventListener("dragstart", handleDragStart);
+        });
+      }
+
+      // Drag & Drop
+      function handleDragStart(e) {
+        e.dataTransfer.setData("component", e.target.dataset.component);
+        log("📦 Component selected", "info");
+      }
+
+      previewIframe.addEventListener("load", () => {
+        const iframeDoc = previewIframe.contentDocument;
+
+        iframeDoc.body.addEventListener("dragover", (e) => {
+          e.preventDefault();
+          iframeDoc.querySelector(".drop-zone")?.classList.add("active");
+        });
+
+        iframeDoc.body.addEventListener("dragleave", () => {
+          iframeDoc.querySelector(".drop-zone")?.classList.remove("active");
+        });
+
+        iframeDoc.body.addEventListener("drop", (e) => {
+          e.preventDefault();
+          const componentData = JSON.parse(e.dataTransfer.getData("component"));
+          addComponentToPreview(componentData);
+        });
+      });
+
+      // Add component to preview
+      function addComponentToPreview(component) {
+        const iframeDoc = previewIframe.contentDocument;
+
+        // Remove drop zone if exists
+        const dropZone = iframeDoc.querySelector(".drop-zone");
+        if (dropZone) dropZone.remove();
+
+        // Add component HTML
+        const container = iframeDoc.body;
+        const tempDiv = iframeDoc.createElement("div");
+        tempDiv.innerHTML = component.html;
+        container.appendChild(tempDiv.firstElementChild);
+
+        // Add component CSS
+        if (component.css) {
+          const style = iframeDoc.createElement("style");
+          style.textContent = component.css;
+          iframeDoc.head.appendChild(style);
+          currentCSS += "\n" + component.css;
+        }
+
+        currentHTML += "\n" + component.html;
+
+        updateEditor();
+        log(`✅ Added ${component.title}`, "success");
+      }
+
+      // Update editor
+      function updateEditor() {
+        if (currentTab === "html") {
+          codeEditor.value = currentHTML;
+        } else if (currentTab === "css") {
+          codeEditor.value = currentCSS;
+        } else {
+          codeEditor.value = currentJS;
+        }
+      }
+
+      // Tab switching
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          tabs.forEach((t) => t.classList.remove("active"));
+          tab.classList.add("active");
+          currentTab = tab.dataset.tab;
+          updateEditor();
+        });
+      });
+
+      // Apply changes
+      document.getElementById("btn-apply").addEventListener("click", () => {
+        const code = codeEditor.value;
+
+        if (currentTab === "html") {
+          currentHTML = code;
+          const iframeDoc = previewIframe.contentDocument;
+          iframeDoc.body.innerHTML = code;
+          log("✅ HTML updated", "success");
+        } else if (currentTab === "css") {
+          currentCSS = code;
+          const iframeDoc = previewIframe.contentDocument;
+          const existingStyle = iframeDoc.querySelector("style[data-custom]");
+          if (existingStyle) {
+            existingStyle.textContent = code;
+          } else {
+            const style = iframeDoc.createElement("style");
+            style.dataset.custom = "true";
+            style.textContent = code;
+            iframeDoc.head.appendChild(style);
+          }
+          log("✅ CSS updated", "success");
+        }
+      });
+
+      // Copy code
+      document.getElementById("btn-copy").addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(codeEditor.value);
+          log("📋 Code copied to clipboard", "success");
+        } catch (err) {
+          log("❌ Failed to copy code", "error");
+        }
+      });
+
+      // Export to codebase
+      document.getElementById("btn-export").addEventListener("click", () => {
+        const exportData = {
+          html: currentHTML,
+          css: currentCSS,
+          js: currentJS,
+        };
+
+        const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "playground-export.json";
+        a.click();
+
+        log("💾 Exported to playground-export.json", "success");
+        log("📝 Copy the HTML/CSS to your component files", "info");
+      });
+
+      // Reset
+      document.getElementById("btn-reset").addEventListener("click", () => {
+        currentHTML = "";
+        currentCSS = "";
+        currentJS = "";
+        previewIframe.srcdoc = previewIframe.getAttribute("srcdoc");
+        updateEditor();
+        log("🔄 Playground reset", "info");
+      });
+
+      // Test button - adds a header directly
+      document.getElementById("btn-test").addEventListener("click", () => {
+        const testComponent = COMPONENTS.find((c) => c.name === "me-header");
+        if (testComponent) {
+          addComponentToPreview(testComponent);
+          log("🧪 Test component added (me-header)", "success");
+        }
+      });
+
+      // Refresh preview
+      document.getElementById("btn-refresh").addEventListener("click", () => {
+        previewIframe.contentWindow.location.reload();
+        log("↻ Preview refreshed", "info");
+      });
+
+      // Console logger
+      function log(message, type = "info") {
+        const line = document.createElement("div");
+        line.className = `console-line ${type}`;
+        line.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+        consoleEl.appendChild(line);
+        consoleEl.scrollTop = consoleEl.scrollHeight;
+      }
+
+      // Initialize
+      loadComponents();
+      updateEditor();
+    </script>
+  </body>
+</html>

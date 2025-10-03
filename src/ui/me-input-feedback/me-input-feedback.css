@@ -1,0 +1,75 @@
+/* File: src/ui/me-input-feedback/me-input-feedback.css
+   Component: me-input-feedback
+   Import design tokens and base styles
+*/
+
+/* Import design tokens from Token Studio */
+@import "../../styles/tokens.css";
+@import "../../styles/base.css";
+
+/* Component styles - customize based on Figma design */
+.me-input-feedback {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Sizing - use tokens from Figma Variables */
+  height: var(--component-height-md, 44px);
+  min-width: var(--component-min-width, 44px);
+  padding-inline: var(--space-md, 16px);
+
+  /* Colors - use semantic tokens */
+  background: var(--accent-primary, #5c6ef8);
+  color: var(--text-100, #ffffff);
+  border: 1px solid var(--border-base, rgba(255, 255, 255, 0.12));
+  
+  /* Border radius */
+  border-radius: var(--radius-md, 12px);
+
+  /* Typography */
+  font-size: var(--font-size-body-md, 1rem);
+  letter-spacing: var(--letter-spacing-xxs, 0.01em);
+  line-height: 1;
+
+  /* Interactions */
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 120ms ease, filter 120ms ease, box-shadow 120ms ease;
+}
+
+/* Hover state */
+.me-input-feedback:hover {
+  filter: brightness(1.06);
+}
+
+/* Active state */
+.me-input-feedback:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+/* Focus styles */
+.me-input-feedback:focus {
+  outline: none;
+}
+
+.me-input-feedback:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent-primary, #5c6ef8) 40%, transparent);
+}
+
+/* Internal elements */
+.me-input-feedback-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm, 8px);
+}
+
+/* Variants - Add based on Figma component variants */
+/* Example:
+.me-input-feedback--primary { background: var(--accent-primary); }
+.me-input-feedback--secondary { background: var(--accent-secondary); }
+.me-input-feedback--ghost { background: transparent; }
+.me-input-feedback--small { height: var(--component-height-sm); }
+.me-input-feedback--large { height: var(--component-height-lg); }
+*/

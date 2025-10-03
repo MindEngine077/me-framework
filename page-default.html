@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ME Framework - Design System Hub 🚀</title>
+
+    <!-- Preload critical fonts for better performance -->
+    <link rel="preload" href="src/fonts/NoirPro-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="src/fonts/NoirPro-Medium.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- Custom Fonts: Noir Pro & Signal -->
+    <link rel="stylesheet" href="src/fonts/fonts.css" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="src/styles/tokens.css" />
+    <link rel="stylesheet" href="src/styles/base.css" />
+    <link rel="stylesheet" href="src/styles/theme-dark.css" />
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        background: var(--background-base, #0a0a0f);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        font-family: var(--font-family-base, system-ui, -apple-system, sans-serif);
+      }
+
+      .page-default,
+      .page-default * {
+        box-sizing: border-box;
+      }
+      .page-default {
+        background: var(--surface-700, #0a1319);
+        border-radius: var(--radius-lg, 12px);
+        display: flex;
+        flex-direction: column;
+        gap: var(--null, 0px);
+        align-items: center;
+        justify-content: flex-start;
+        height: fit-content;
+        position: relative;
+        box-shadow: var(--mobile-mockup-box-shadow, 35px 35px 60px 0px rgba(0, 0, 0, 0.4), -12px -12px 50px 0px rgba(255, 255, 255, 0.04), 5px 5px 40px 0px rgba(0, 0, 0, 0.1));
+        overflow: hidden;
+      }
+      .top {
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-shrink: 0;
+        width: 360px;
+        position: relative;
+      }
+      .safe-top {
+        display: flex;
+        flex-direction: row;
+        gap: var(--null, 0px);
+        align-items: center;
+        justify-content: center;
+        align-self: stretch;
+        flex-shrink: 0;
+        height: var(--safe-area-top, 44px);
+        position: relative;
+        overflow: hidden;
+      }
+      .statusbar {
+        padding: 8px 18px 8px 18px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        flex-shrink: 0;
+        width: 360px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hour-notifications {
+        display: flex;
+        flex-direction: row;
+        gap: 4px;
+        align-items: center;
+        justify-content: flex-start;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .hour {
+        color: var(--text-300, #fffef0);
+        text-align: left;
+        font-family: "NoirPro-Regular", sans-serif;
+        font-size: 11px;
+        line-height: 150%;
+        font-weight: 400;
+        position: relative;
+      }
+      .whats-app-icon {
+        flex-shrink: 0;
+        width: 12px;
+        height: 12px;
+        position: relative;
+        overflow: visible;
+      }
+      .functions {
+        display: flex;
+        flex-direction: row;
+        gap: 4px;
+        align-items: center;
+        justify-content: flex-start;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .alarme {
+        flex-shrink: 0;
+        width: 12px;
+        height: 12px;
+        position: relative;
+        overflow: visible;
+      }
+      .wifi-signal {
+        flex-shrink: 0;
+        width: 12px;
+        height: 12px;
+        position: relative;
+        overflow: visible;
+      }
+      .battery {
+        display: flex;
+        flex-direction: row;
+        gap: 0px;
+        align-items: center;
+        justify-content: flex-start;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .battery-full {
+        flex-shrink: 0;
+        width: 12px;
+        height: 12px;
+        position: relative;
+        overflow: visible;
+      }
+      .percent {
+        color: var(--text-300, #fffef0);
+        text-align: right;
+        font-family: "NoirPro-Regular", sans-serif;
+        font-size: 11px;
+        line-height: 150%;
+        font-weight: 400;
+        position: relative;
+      }
+      .topnav {
+        padding: var(--topnav-pad-y, 0px) var(--topnav-pad-x, 16px) var(--topnav-pad-y, 0px) var(--main-pad-x, 16px);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        align-self: stretch;
+        flex-shrink: 0;
+        height: var(--topnav-height, 56px);
+        position: relative;
+        overflow: hidden;
+      }
+      .touch-slots {
+        display: flex;
+        flex-direction: row;
+        gap: var(--touch-slots-gap, 8px);
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 56px;
+        height: 48px;
+        min-height: var(--touch-target, 48px);
+        max-height: var(--touch-target, 48px);
+        position: relative;
+        overflow: hidden;
+      }
+      .logo {
+        flex: 1;
+        height: 22.06px;
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 56/22.06;
+      }
+
+      .touch-slots2 {
+        display: flex;
+        flex-direction: row;
+        gap: var(--touch-slots-gap, 8px);
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: var(--touch-target, 48px);
+        height: 48px;
+        min-width: 48px;
+        max-width: 48px;
+        min-height: var(--touch-target, 48px);
+        max-height: var(--touch-target, 48px);
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 1;
+      }
+      .icon-box {
+        background: var(--surface-400, #15242c);
+        border-radius: var(--radius-pill, 9999px);
+        padding: var(--space-4xs, 4px);
+        display: flex;
+        flex-direction: row;
+        gap: var(--null, 0px);
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: 32px;
+        height: var(--icon-xl, 32px);
+        position: relative;
+        box-shadow: var(--elevation-component-xs-box-shadow, 2px 2px 5px 0px rgba(0, 0, 0, 0.3), -2px -2px 12px 0px rgba(255, 255, 255, 0.04));
+      }
+      .icons {
+        flex-shrink: 0;
+        width: var(--icon-sm, 16px);
+        height: var(--icon-sm, 16px);
+        position: relative;
+        overflow: visible;
+        aspect-ratio: 1;
+      }
+      .header {
+        border-style: solid;
+        border-color: var(--surface-200, #233945);
+        border-width: 0px 0px 1px 0px;
+        padding: var(--topnav-pad-y, 0px) var(--topnav-pad-x, 16px) var(--topnav-pad-y, 0px) var(--topnav-pad-x, 16px);
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        align-self: stretch;
+        flex-shrink: 0;
+        height: var(--topnav-height, 56px);
+        position: relative;
+        overflow: hidden;
+      }
+      .icons2 {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: var(--icon-sm, 16px);
+        height: auto;
+        position: relative;
+        overflow: visible;
+      }
+      .action-slots {
+        display: flex;
+        flex-direction: row;
+        gap: var(--null, 0px);
+        align-items: center;
+        justify-content: flex-start;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .icons3 {
+        flex-shrink: 0;
+        width: var(--icon-sm, 16px);
+        height: var(--icon-sm, 16px);
+        position: relative;
+        overflow: visible;
+        aspect-ratio: 1;
+      }
+      .icons4 {
+        flex-shrink: 0;
+        width: var(--icon-sm, 16px);
+        height: var(--icon-sm, 16px);
+        position: relative;
+        overflow: visible;
+        aspect-ratio: 1;
+      }
+      .icons5 {
+        flex-shrink: 0;
+        width: var(--icon-sm, 16px);
+        height: var(--icon-sm, 16px);
+        position: relative;
+        overflow: visible;
+        aspect-ratio: 1;
+      }
+      .main {
+        padding: var(--content-pad-y, 0px) var(--main-pad-x-sm, 16px) var(--content-pad-y, 0px) var(--main-pad-x-sm, 16px);
+        display: flex;
+        flex-direction: column;
+        gap: var(--content-gap, 12px);
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-shrink: 0;
+        width: 360px;
+        height: 554px;
+        position: relative;
+        overflow: hidden;
+      }
+      .section {
+        padding: var(--section-pad-y, 16px) var(--section-pad-x, 0px) var(--section-pad-y, 16px) var(--section-pad-x, 0px);
+        display: flex;
+        flex-direction: column;
+        gap: var(--section-gap, 16px);
+        align-items: flex-start;
+        justify-content: flex-start;
+        align-self: stretch;
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+      }
+      .container {
+        padding: var(--content-pad-y, 0px) var(--container-pad-x, 16px) var(--content-pad-y, 0px) var(--container-pad-x, 16px);
+        display: flex;
+        flex-direction: column;
+        gap: var(--container-gap, 0px);
+        align-items: center;
+        justify-content: flex-start;
+        align-self: stretch;
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+      }
+      .content {
+        border-radius: var(--radius, 12px);
+        padding: var(--content-pad-y, 0px) var(--content-pad-x, 16px) var(--content-pad-y, 0px) var(--content-pad-x, 16px);
+        display: flex;
+        flex-direction: column;
+        gap: var(--content-gap, 12px);
+        align-items: center;
+        justify-content: flex-start;
+        align-self: stretch;
+        flex: 1;
+        position: relative;
+      }
+      .bottom {
+        display: flex;
+        flex-direction: column;
+        gap: var(--null, 0px);
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-shrink: 0;
+        width: 360px;
+        position: relative;
+      }
+      .footnav {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        align-self: stretch;
+        flex-shrink: 0;
+        height: var(--footnav-layout-height, 56px);
+        position: relative;
+        overflow: hidden;
+      }
+      .footnav-item {
+        border-style: solid;
+        border-color: var(--footnav-colors-top-border, #182831);
+        border-width: 1px 0px 0px 0px;
+        padding: var(--space-4xs, 4px);
+        display: flex;
+        flex-direction: column;
+        gap: var(--footnav-layout-item-gap, 4px);
+        align-items: center;
+        justify-content: center;
+        align-self: stretch;
+        flex: 1;
+        min-width: 48px;
+        min-height: 48px;
+        position: relative;
+        overflow: hidden;
+      }
+      .fa-7-solid-house {
+        display: flex;
+        flex-direction: row;
+        gap: var(--icon-gap, 0px);
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: var(--icon-md, 24px);
+        height: 24px;
+        position: relative;
+        overflow: visible;
+        aspect-ratio: 1;
+      }
+      .home {
+        color: var(--footnav-colors-link-default, #fffbce);
+        text-align: center;
+        font-family: var(--footnav-link-font-family, "NoirPro-Medium", sans-serif);
+        font-size: var(--footnav-link-font-size, 10px);
+        line-height: var(--footnav-link-line-height, 180%);
+        font-weight: var(--footnav-link-font-weight, 500);
+        position: relative;
+        width: 27px;
+      }
+      .fa-7-solid-user-tie {
+        display: flex;
+        flex-direction: row;
+        gap: var(--icon-gap, 0px);
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: var(--icon-md, 24px);
+        height: 24px;
+        position: relative;
+        overflow: visible;
+        aspect-ratio: 1;
+      }
+      .fa-7-solid-fire-flame-curved {
+        display: flex;
+        flex-direction: row;
+        gap: var(--icon-gap, 0px);
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: var(--icon-md, 24px);
+        height: 24px;
+        position: relative;
+        overflow: visible;
+        aspect-ratio: 1;
+      }
+      .fa-7-solid-clock-four {
+        display: flex;
+        flex-direction: row;
+        gap: var(--icon-gap, 0px);
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: var(--icon-md, 24px);
+        height: 24px;
+        position: relative;
+        overflow: visible;
+        aspect-ratio: 1;
+      }
+      .fa-7-solid-gear {
+        display: flex;
+        flex-direction: row;
+        gap: var(--icon-gap, 0px);
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        width: var(--icon-md, 24px);
+        height: 24px;
+        position: relative;
+        overflow: visible;
+        aspect-ratio: 1;
+      }
+      .safe-bottom {
+        display: flex;
+        flex-direction: row;
+        gap: var(--null, 0px);
+        align-items: flex-end;
+        justify-content: center;
+        align-self: stretch;
+        flex-shrink: 0;
+        height: var(--safe-area-bottom, 34px);
+        position: relative;
+        overflow: hidden;
+      }
+      .home-indicator {
+        flex: 1;
+        height: 24px;
+        position: relative;
+      }
+      .home-indicator2 {
+        background: var(--text-800, #fffac1);
+        border-radius: 2px;
+        width: 92px;
+        height: 4px;
+        position: absolute;
+        left: 50%;
+        translate: -50%;
+        top: calc(50% - -1px);
+      }
+
+      /* Icon styling - make SVGs visible and colored */
+      img[class*="fa-7-solid"],
+      img[class*="icon"],
+      img[class*="alarme"],
+      img[class*="wifi"],
+      img[class*="battery"],
+      img[class*="whats-app"] {
+        filter: brightness(0) invert(1);
+        object-fit: contain;
+      }
+
+      /* Logo should keep original colors */
+      .logo img {
+        filter: none;
+      }
+    </style>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div class="page-default">
+      <div class="top">
+        <div class="safe-top">
+          <div class="statusbar">
+            <div class="hour-notifications">
+              <div class="hour">09:41</div>
+              <img class="whats-app-icon" src="src/ui/icons/name-fa7-solid-message.svg" alt="Message notification" />
+            </div>
+            <div class="functions">
+              <img class="alarme" src="src/ui/icons/name-fa7-solid-alarm-clock.svg" />
+              <img class="wifi-signal" src="src/ui/icons/name-fa7-solid-wifi.svg" />
+              <div class="battery">
+                <img class="battery-full" src="src/ui/icons/name-fa7-solid-battery-full.svg" />
+                <div class="percent">100%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="topnav">
+          <div class="touch-slots">
+            <div class="logo">
+              <img class="logo" src="src/ui/logo/logo.svg" />
+            </div>
+          </div>
+          <div class="touch-slots2">
+            <div class="icon-box">
+              <img class="icons" src="src/ui/icons/name-fa7-solid-bell.svg" />
+            </div>
+          </div>
+        </div>
+        <div class="header">
+          <div class="touch-slots2">
+            <div class="icon-box">
+              <img class="icons2" src="src/ui/icons/name-fa7-solid-bars.svg" />
+            </div>
+          </div>
+          <div class="action-slots">
+            <div class="touch-slots2">
+              <div class="icon-box">
+                <img class="icons3" src="src/ui/icons/name-fa7-solid-magnifying-glass.svg" />
+              </div>
+            </div>
+            <div class="touch-slots2">
+              <div class="icon-box">
+                <img class="icons4" src="src/ui/icons/name-fa7-solid-plus.svg" />
+              </div>
+            </div>
+            <div class="touch-slots2">
+              <div class="icon-box">
+                <img class="icons5" src="src/ui/icons/name-fa7-solid-ellipsis.svg" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main">
+        <div class="section">
+          <div class="container">
+            <div class="content"></div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="footnav">
+          <div class="footnav-item">
+            <img class="fa-7-solid-house" src="src/ui/icons/name-fa7-solid-house.svg" />
+            <div class="home">Home</div>
+          </div>
+          <div class="footnav-item">
+            <img class="fa-7-solid-user-tie" src="src/ui/icons/name-fa7-solid-user-tie.svg" />
+            <div class="home">Shifts</div>
+          </div>
+          <div class="footnav-item">
+            <img class="fa-7-solid-fire-flame-curved" src="src/ui/icons/name-fa7-solid-fire-flame-curved.svg" />
+            <div class="home">Activity</div>
+          </div>
+          <div class="footnav-item">
+            <img class="fa-7-solid-clock-four" src="src/ui/icons/name-fa7-solid-clock.svg" />
+            <div class="home">Time</div>
+          </div>
+          <div class="footnav-item">
+            <img class="fa-7-solid-gear" src="src/ui/icons/name-fa7-solid-gear.svg" />
+            <div class="home">Settings</div>
+          </div>
+        </div>
+        <div class="safe-bottom">
+          <div class="home-indicator">
+            <div class="home-indicator2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

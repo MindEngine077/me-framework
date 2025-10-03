@@ -1,0 +1,182 @@
+/* File: src/ui/me-footnav/me-footnav.css
+   Component: me-footnav
+   Import design tokens and base styles
+*/
+
+/* Import design tokens from Token Studio */
+@import "../../styles/tokens.css";
+@import "../../styles/base.css";
+
+.footnav,
+.footnav * {
+  box-sizing: border-box;
+}
+.footnav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--footnav-layout-height, 3.5rem);
+  position: relative;
+  overflow: hidden;
+}
+.footnav-item {
+  border-style: solid;
+  border-color: var(--footnav-colors-top-border, #182831);
+  border-width: 0.0625rem 0rem 0rem 0rem;
+  padding: var(--space-4xs, 0.25rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--footnav-layout-item-gap, 0.25rem);
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  flex: 1;
+  min-width: 3rem;
+  min-height: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.fa-7-solid-house {
+  display: flex;
+  flex-direction: row;
+  gap: var(--icon-gap, 0rem);
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--icon-md, 1.5rem);
+  height: 1.5rem;
+  position: relative;
+  overflow: visible;
+  aspect-ratio: 1;
+}
+.home {
+  color: var(--footnav-colors-link-default, #fffbce);
+  text-align: center;
+  font-family: var(--footnav-link-font-family, "NoirPro-Medium", sans-serif);
+  font-size: var(--footnav-link-font-size, 0.625rem);
+  line-height: var(--footnav-link-line-height, 180%);
+  font-weight: var(--footnav-link-font-weight, 500);
+  position: relative;
+  width: 1.6875rem;
+}
+.fa-7-solid-user-tie {
+  display: flex;
+  flex-direction: row;
+  gap: var(--icon-gap, 0rem);
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--icon-md, 1.5rem);
+  height: 1.5rem;
+  position: relative;
+  overflow: visible;
+  aspect-ratio: 1;
+}
+.fa-7-solid-fire-flame-curved {
+  display: flex;
+  flex-direction: row;
+  gap: var(--icon-gap, 0rem);
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--icon-md, 1.5rem);
+  height: 1.5rem;
+  position: relative;
+  overflow: visible;
+  aspect-ratio: 1;
+}
+.fa-7-solid-clock-four {
+  display: flex;
+  flex-direction: row;
+  gap: var(--icon-gap, 0rem);
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--icon-md, 1.5rem);
+  height: 1.5rem;
+  position: relative;
+  overflow: visible;
+  aspect-ratio: 1;
+}
+.fa-7-solid-gear {
+  display: flex;
+  flex-direction: row;
+  gap: var(--icon-gap, 0rem);
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--icon-md, 1.5rem);
+  height: 1.5rem;
+  position: relative;
+  overflow: visible;
+  aspect-ratio: 1;
+}
+
+
+/* Component styles - customize based on Figma design */
+.me-footnav {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Sizing - use tokens from Figma Variables */
+  height: var(--component-height-md, 44px);
+  min-width: var(--component-min-width, 44px);
+  padding-inline: var(--space-md, 16px);
+
+  /* Colors - use semantic tokens */
+  background: var(--accent-primary, #5c6ef8);
+  color: var(--text-100, #ffffff);
+  border: 1px solid var(--border-base, rgba(255, 255, 255, 0.12));
+  
+  /* Border radius */
+  border-radius: var(--radius-md, 12px);
+
+  /* Typography */
+  font-size: var(--font-size-body-md, 1rem);
+  letter-spacing: var(--letter-spacing-xxs, 0.01em);
+  line-height: 1;
+
+  /* Interactions */
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 120ms ease, filter 120ms ease, box-shadow 120ms ease;
+}
+
+/* Hover state */
+.me-footnav:hover {
+  filter: brightness(1.06);
+}
+
+/* Active state */
+.me-footnav:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+/* Focus styles */
+.me-footnav:focus {
+  outline: none;
+}
+
+.me-footnav:focus-visible {
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent-primary, #5c6ef8) 40%, transparent);
+}
+
+/* Internal elements */
+.me-footnav-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm, 8px);
+}
+
+/* Variants - Add based on Figma component variants */
+/* Example:
+.me-footnav--primary { background: var(--accent-primary); }
+.me-footnav--secondary { background: var(--accent-secondary); }
+.me-footnav--ghost { background: transparent; }
+.me-footnav--small { height: var(--component-height-sm); }
+.me-footnav--large { height: var(--component-height-lg); }
+*/

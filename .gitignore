@@ -25,3 +25,6 @@ Desktop.ini
 dist/
 build/
 *.log
+
+# Figma backups (optional - remove this line if you want to commit backups)
+figma-backup/

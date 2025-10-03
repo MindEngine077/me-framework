@@ -1,0 +1,202 @@
+/**
+ * ME Framework - Custom Fonts
+ * Noir Pro font family
+ * 
+ * INSTRUCTIONS:
+ * 
+ * Option 1: Self-host fonts (RECOMMENDED)
+ * ----------------------------------------
+ * 1. Download Noir Pro fonts from your font provider
+ * 2. Place .woff2 files in this folder (src/fonts/)
+ * 3. Uncomment the @font-face rules below
+ * 4. Update the src: paths to match your font filenames
+ * 
+ * Option 2: Use Google Fonts or Adobe Fonts
+ * ------------------------------------------
+ * 1. Get the embed code from your font provider
+ * 2. Add <link> tag in your HTML <head>
+ * 3. The CSS variables will automatically use the fonts
+ */
+
+/* OPTION 1: Self-hosted fonts ✅ ACTIVE */
+
+/* Noir Pro - Light (300) */
+@font-face {
+  font-family: "NoirPro";
+  src: url("./NoirPro-Light.woff2") format("woff2"), url("./NoirPro-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NoirPro";
+  src: url("./NoirPro-LightItalic.woff2") format("woff2"), url("./NoirPro-LightItalic.woff") format("woff");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Noir Pro - Regular (400) */
+@font-face {
+  font-family: "NoirPro";
+  src: url("./NoirPro-Regular.woff2") format("woff2"), url("./NoirPro-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NoirPro";
+  src: url("./NoirPro-Italic.woff2") format("woff2"), url("./NoirPro-Italic.woff") format("woff");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Noir Pro - Medium (500) */
+@font-face {
+  font-family: "NoirPro";
+  src: url("./NoirPro-Medium.woff2") format("woff2"), url("./NoirPro-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NoirPro";
+  src: url("./NoirPro-MediumItalic.woff2") format("woff2"), url("./NoirPro-MediumItalic.woff") format("woff");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Noir Pro - SemiBold (600) */
+@font-face {
+  font-family: "NoirPro";
+  src: url("./NoirPro-SemiBold.woff2") format("woff2"), url("./NoirPro-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NoirPro";
+  src: url("./NoirPro-SemiBoldItalic.woff2") format("woff2"), url("./NoirPro-SemiBoldItalic.woff") format("woff");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Noir Pro - Bold (700) */
+@font-face {
+  font-family: "NoirPro";
+  src: url("./NoirPro-Bold.woff2") format("woff2"), url("./NoirPro-Bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NoirPro";
+  src: url("./NoirPro-BoldItalic.woff2") format("woff2"), url("./NoirPro-BoldItalic.woff") format("woff");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Noir Pro - Heavy (900) */
+@font-face {
+  font-family: "NoirPro";
+  src: url("./NoirPro-Heavy.woff2") format("woff2"), url("./NoirPro-Heavy.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "NoirPro";
+  src: url("./NoirPro-HeavyItalic.woff2") format("woff2"), url("./NoirPro-HeavyItalic.woff") format("woff");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Signal Font - Alternative/Display font */
+@font-face {
+  font-family: "Signal";
+  src: url("./Signal-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Signal";
+  src: url("./Signal-Normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Signal";
+  src: url("./Signal-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Signal";
+  src: url("./Signal-ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Signal";
+  src: url("./Signal-Heavy.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* OPTION 2: Example with Google Fonts alternative */
+/* If you don't have Noir Pro, you can use a similar font */
+
+/*
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+*/
+
+/* Update the CSS variable to use your loaded font */
+:root {
+  /* Self-hosted Noir Pro ✅ ACTIVE */
+  --fontfamilies-noir-pro: "NoirPro", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fontfamilies-signal: "Signal", "NoirPro", sans-serif;
+
+  /* When using Google Fonts alternative: */
+  /* --fontfamilies-noir-pro: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; */
+}
+
+/* Font smoothing for better rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Font weight utilities */
+.font-regular {
+  font-weight: 400;
+}
+.font-medium {
+  font-weight: 500;
+}
+.font-semibold {
+  font-weight: 600;
+}
+.font-bold {
+  font-weight: 700;
+}

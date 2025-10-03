@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ME Framework - Component Demo</title>
+
+    <!-- Design Tokens -->
+    <link rel="stylesheet" href="src/styles/tokens.css" />
+    <link rel="stylesheet" href="src/styles/base.css" />
+    <link rel="stylesheet" href="src/styles/theme-dark.css" />
+
+    <!-- Component Styles -->
+    <link rel="stylesheet" href="src/ui/me-header/me-header.css" />
+    <link rel="stylesheet" href="src/ui/me-top/me-top.css" />
+    <link rel="stylesheet" href="src/ui/me-safe-top/me-safe-top.css" />
+    <link rel="stylesheet" href="src/ui/me-input/me-input.css" />
+    <link rel="stylesheet" href="src/ui/me-input-feedback/me-input-feedback.css" />
+    <link rel="stylesheet" href="src/ui/me-footnav/me-footnav.css" />
+    <link rel="stylesheet" href="src/ui/me-bottom/me-bottom.css" />
+    <link rel="stylesheet" href="src/ui/me-safe-bottom/me-safe-bottom.css" />
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: var(--background-base, #0a0a0a);
+        color: var(--text-primary, #ffffff);
+      }
+
+      .demo-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: var(--space-xl, 32px) var(--space-lg, 24px);
+      }
+
+      .demo-section {
+        margin-bottom: var(--space-2xl, 48px);
+        padding: var(--space-xl, 32px);
+        background: var(--surface-raised, rgba(255, 255, 255, 0.05));
+        border-radius: var(--radius-lg, 16px);
+        border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.08));
+      }
+
+      .demo-section h2 {
+        margin: 0 0 var(--space-lg, 24px) 0;
+        font-size: var(--font-size-h2, 2rem);
+        color: var(--text-100, #ffffff);
+      }
+
+      .demo-section h3 {
+        margin: var(--space-lg, 24px) 0 var(--space-md, 16px) 0;
+        font-size: var(--font-size-h3, 1.5rem);
+        color: var(--text-200, rgba(255, 255, 255, 0.9));
+      }
+
+      .demo-grid {
+        display: grid;
+        gap: var(--space-md, 16px);
+        margin-top: var(--space-md, 16px);
+      }
+
+      .token-display {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: var(--space-sm, 12px);
+        margin-top: var(--space-md, 16px);
+      }
+
+      .token-card {
+        padding: var(--space-md, 16px);
+        background: var(--surface-base, rgba(255, 255, 255, 0.03));
+        border-radius: var(--radius-md, 12px);
+        border: 1px solid var(--border-base, rgba(255, 255, 255, 0.12));
+      }
+
+      .token-card__name {
+        font-size: var(--font-size-sm, 0.875rem);
+        color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+        font-family: "Monaco", "Courier New", monospace;
+        margin-bottom: var(--space-xs, 8px);
+      }
+
+      .token-card__value {
+        font-size: var(--font-size-md, 1rem);
+        color: var(--text-primary, #ffffff);
+      }
+
+      .component-showcase {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-md, 16px);
+        padding: var(--space-lg, 24px);
+        background: var(--surface-base, rgba(255, 255, 255, 0.03));
+        border-radius: var(--radius-md, 12px);
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: var(--space-md, 16px);
+        margin-top: var(--space-lg, 24px);
+      }
+
+      .stat-card {
+        padding: var(--space-lg, 24px);
+        background: linear-gradient(135deg, var(--accent-primary, #5c6ef8) 0%, var(--accent-secondary, #8b5cf6) 100%);
+        border-radius: var(--radius-lg, 16px);
+        text-align: center;
+      }
+
+      .stat-card__value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #ffffff;
+        margin-bottom: var(--space-xs, 8px);
+      }
+
+      .stat-card__label {
+        font-size: var(--font-size-sm, 0.875rem);
+        color: rgba(255, 255, 255, 0.9);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="demo-container">
+      <!-- Header -->
+      <div class="demo-section">
+        <h2>🎨 ME Framework - Figma Design System</h2>
+        <p style="color: var(--text-secondary, rgba(255, 255, 255, 0.7)); font-size: var(--font-size-lg, 1.125rem)">A mobile-first design system connected to Figma with Token Studio integration</p>
+
+        <div class="stats">
+          <div class="stat-card">
+            <div class="stat-card__value">749</div>
+            <div class="stat-card__label">Design Tokens</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__value">9</div>
+            <div class="stat-card__label">Components</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__value">570</div>
+            <div class="stat-card__label">Figma Components</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Components -->
+      <div class="demo-section">
+        <h2>📦 Scaffolded Components</h2>
+        <p style="color: var(--text-secondary)">Core UI components generated from Figma</p>
+
+        <h3>Navigation</h3>
+        <div class="component-showcase">
+          <div class="me-header">
+            <span class="me-header__label">Header Component</span>
+          </div>
+          <div class="me-top">
+            <span class="me-top__label">Top Component</span>
+          </div>
+          <div class="me-safe-top">
+            <span class="me-safe-top__label">Safe Top</span>
+          </div>
+          <div class="me-footnav">
+            <span class="me-footnav__label">Footer Nav</span>
+          </div>
+          <div class="me-bottom">
+            <span class="me-bottom__label">Bottom Component</span>
+          </div>
+          <div class="me-safe-bottom">
+            <span class="me-safe-bottom__label">Safe Bottom</span>
+          </div>
+        </div>
+
+        <h3>Form Elements</h3>
+        <div class="component-showcase">
+          <div class="me-input">
+            <span class="me-input__label">Input Component</span>
+          </div>
+          <div class="me-input-feedback">
+            <span class="me-input-feedback__label">Input Feedback</span>
+          </div>
+        </div>
+
+        <h3>Other</h3>
+        <div class="component-showcase">
+          <div class="me-cg">
+            <span class="me-cg__label">CG Component</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Design Tokens Sample -->
+      <div class="demo-section">
+        <h2>🎨 Design Tokens (Sample)</h2>
+        <p style="color: var(--text-secondary)">Your Figma variables as CSS custom properties</p>
+
+        <h3>Colors</h3>
+        <div class="token-display">
+          <div class="token-card">
+            <div class="token-card__name">--accent-primary</div>
+            <div class="token-card__value" style="color: var(--accent-primary, #5c6ef8)">
+              <div style="width: 40px; height: 40px; background: var(--accent-primary); border-radius: 8px"></div>
+            </div>
+          </div>
+          <div class="token-card">
+            <div class="token-card__name">--text-primary</div>
+            <div class="token-card__value" style="color: var(--text-primary, #ffffff)">Aa</div>
+          </div>
+          <div class="token-card">
+            <div class="token-card__name">--surface-raised</div>
+            <div class="token-card__value">
+              <div style="width: 40px; height: 40px; background: var(--surface-raised, rgba(255, 255, 255, 0.05)); border-radius: 8px; border: 1px solid var(--border-base)"></div>
+            </div>
+          </div>
+        </div>
+
+        <h3>Spacing</h3>
+        <div class="token-display">
+          <div class="token-card">
+            <div class="token-card__name">--space-sm</div>
+            <div class="token-card__value">8px</div>
+          </div>
+          <div class="token-card">
+            <div class="token-card__name">--space-md</div>
+            <div class="token-card__value">16px</div>
+          </div>
+          <div class="token-card">
+            <div class="token-card__name">--space-lg</div>
+            <div class="token-card__value">24px</div>
+          </div>
+        </div>
+
+        <h3>Border Radius</h3>
+        <div class="token-display">
+          <div class="token-card">
+            <div class="token-card__name">--radius-sm</div>
+            <div class="token-card__value">
+              <div style="width: 40px; height: 40px; background: var(--accent-primary); border-radius: var(--radius-sm, 8px)"></div>
+            </div>
+          </div>
+          <div class="token-card">
+            <div class="token-card__name">--radius-md</div>
+            <div class="token-card__value">
+              <div style="width: 40px; height: 40px; background: var(--accent-primary); border-radius: var(--radius-md, 12px)"></div>
+            </div>
+          </div>
+          <div class="token-card">
+            <div class="token-card__name">--radius-lg</div>
+            <div class="token-card__value">
+              <div style="width: 40px; height: 40px; background: var(--accent-primary); border-radius: var(--radius-lg, 16px)"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Next Steps -->
+      <div class="demo-section">
+        <h2>🚀 Next Steps</h2>
+        <ol style="color: var(--text-secondary); line-height: 1.8">
+          <li><strong>Customize Components:</strong> Edit the CSS files in <code>src/ui/*/</code> to match your Figma designs</li>
+          <li><strong>Check Token Variables:</strong> Review <code>src/styles/tokens.css</code> for all 749 available CSS variables</li>
+          <li><strong>Add Figma Variables File:</strong> Update <code>.env</code> with your ME | Variables file key for complete token sync</li>
+          <li><strong>Re-sync:</strong> Run <code>npm run figma:scaffold</code> whenever you update Figma components</li>
+          <li><strong>Build Tokens:</strong> Run <code>npm run tokens:build</code> after updating Token Studio JSON files</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Component Scripts -->
+    <script type="module" src="src/ui/me-header/me-header.js"></script>
+    <script type="module" src="src/ui/me-input/me-input.js"></script>
+    <script type="module" src="src/ui/me-footnav/me-footnav.js"></script>
+  </body>
+</html>

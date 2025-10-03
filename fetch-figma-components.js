@@ -29,17 +29,22 @@ function toKebab(str) {
     .replace(/^-|-$/g, "")
     .toLowerCase();
 }
-function unique(arr) { return Array.from(new Set(arr)); }
+function unique(arr) {
+  return Array.from(new Set(arr));
+}
 function pascalCase(str) {
-  return toKebab(str).split("-").filter(Boolean)
-    .map(s => s[0]?.toUpperCase() + s.slice(1)).join("");
+  return toKebab(str)
+    .split("-")
+    .filter(Boolean)
+    .map((s) => s[0]?.toUpperCase() + s.slice(1))
+    .join("");
 }
 
 async function fetchComponents(fileKey) {
   const url = `https://api.figma.com/v1/files/${fileKey}/components`;
   const res = await fetch(url, {
     headers: {
-      "Authorization": `Bearer ${FIGMA_TOKEN}`,
+      Authorization: `Bearer ${FIGMA_TOKEN}`,
     },
   });
   if (!res.ok) {
@@ -64,7 +69,9 @@ function groupByBaseName(components) {
   return groups;
 }
 
-function ensureDir(p) { fs.mkdirSync(p, { recursive: true }); }
+function ensureDir(p) {
+  fs.mkdirSync(p, { recursive: true });
+}
 function writeFileOnce(filePath, content) {
   if (fs.existsSync(filePath)) return;
   fs.writeFileSync(filePath, content, "utf8");
@@ -133,7 +140,7 @@ if (typeof window !== 'undefined') {
 }
 
 async function main() {
-  console.log("Ì¥ó Fetching Figma components‚Ä¶");
+  console.log("ÔøΩÔøΩÔøΩ Fetching Figma components‚Ä¶");
   const comps = await fetchComponents(FILE_KEY);
   if (!comps.length) {
     console.log("‚ö†Ô∏è No components found. Check FILE_KEY permissions or visibility.");
@@ -142,7 +149,7 @@ async function main() {
   console.log(`‚úÖ Found ${comps.length} components`);
 
   const groups = groupByBaseName(comps);
-  console.log(`Ì∑≠ Base component groups: ${groups.size}`);
+  console.log(`ÔøΩÔøΩÔøΩ Base component groups: ${groups.size}`);
 
   const created = [];
   for (const [base, info] of groups) {
@@ -150,7 +157,7 @@ async function main() {
     created.push({ base, dir, variants: info.variants });
   }
 
-  console.log("\nÌ≥¶ Scaffolded components:");
+  console.log("\nÔøΩÔøΩÔøΩ Scaffolded components:");
   for (const c of created) {
     console.log(` - me-${c.base} ‚Üí ${c.dir}`);
     if (c.variants.length) console.log(`   variants: ${c.variants.join(", ")}`);

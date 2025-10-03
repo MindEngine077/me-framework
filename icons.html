@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Icon Viewer - ME Framework</title>
+    <link rel="stylesheet" href="src/styles/tokens.css" />
+    <link rel="stylesheet" href="src/styles/base.css" />
+    <style>
+      body {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: var(--space-xl, 32px);
+        background: var(--background-base, #0a0a0f);
+        color: var(--text-primary, #ffffff);
+        font-family: var(--font-family-base, system-ui, -apple-system, sans-serif);
+      }
+
+      h1 {
+        font-size: var(--font-size-heading-xl, 2.5rem);
+        margin-bottom: var(--space-md, 16px);
+        color: var(--accent-primary, #5c6ef8);
+      }
+
+      .stats {
+        display: flex;
+        gap: var(--space-lg, 24px);
+        margin-bottom: var(--space-xl, 32px);
+        padding: var(--space-md, 16px);
+        background: var(--surface-raised, rgba(255, 255, 255, 0.05));
+        border-radius: var(--radius-md, 12px);
+        border: 1px solid var(--border-base, rgba(255, 255, 255, 0.12));
+      }
+
+      .stat {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xs, 4px);
+      }
+
+      .stat-value {
+        font-size: var(--font-size-heading-md, 1.5rem);
+        font-weight: 600;
+        color: var(--accent-primary, #5c6ef8);
+      }
+
+      .stat-label {
+        font-size: var(--font-size-body-sm, 0.875rem);
+        color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+      }
+
+      .search {
+        margin-bottom: var(--space-lg, 24px);
+      }
+
+      .search input {
+        width: 100%;
+        padding: var(--space-md, 16px);
+        font-size: var(--font-size-body-md, 1rem);
+        background: var(--surface-raised, rgba(255, 255, 255, 0.05));
+        border: 1px solid var(--border-base, rgba(255, 255, 255, 0.12));
+        border-radius: var(--radius-md, 12px);
+        color: var(--text-primary, #ffffff);
+        transition: all 120ms ease;
+      }
+
+      .search input:focus {
+        outline: none;
+        border-color: var(--accent-primary, #5c6ef8);
+        box-shadow: 0 0 0 3px rgba(92, 110, 248, 0.2);
+      }
+
+      .icon-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: var(--space-md, 16px);
+      }
+
+      .icon-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-sm, 8px);
+        padding: var(--space-md, 16px);
+        background: var(--surface-raised, rgba(255, 255, 255, 0.05));
+        border: 1px solid var(--border-base, rgba(255, 255, 255, 0.12));
+        border-radius: var(--radius-md, 12px);
+        cursor: pointer;
+        transition: all 120ms ease;
+      }
+
+      .icon-card:hover {
+        background: var(--surface-overlay, rgba(255, 255, 255, 0.08));
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .icon-card:active {
+        transform: translateY(0);
+      }
+
+      .icon-preview {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .icon-preview img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: brightness(0) invert(1);
+      }
+
+      .icon-name {
+        font-size: var(--font-size-body-xs, 0.75rem);
+        color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+        text-align: center;
+        word-break: break-word;
+        line-height: 1.2;
+      }
+
+      .copied {
+        position: fixed;
+        bottom: var(--space-lg, 24px);
+        right: var(--space-lg, 24px);
+        padding: var(--space-md, 16px) var(--space-lg, 24px);
+        background: var(--accent-primary, #5c6ef8);
+        color: var(--text-100, #ffffff);
+        border-radius: var(--radius-md, 12px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 200ms ease;
+        pointer-events: none;
+      }
+
+      .copied.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .empty-state {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: var(--space-xl, 32px);
+        color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🎨 Icon Viewer</h1>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value" id="total-icons">0</div>
+        <div class="stat-label">Total Icons</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value" id="visible-icons">0</div>
+        <div class="stat-label">Visible</div>
+      </div>
+    </div>
+
+    <div class="search">
+      <input type="text" id="search-input" placeholder="Search icons... (e.g., calendar, user, arrow)" autocomplete="off" />
+    </div>
+
+    <div class="icon-grid" id="icon-grid">
+      <!-- Icons will be loaded here -->
+    </div>
+
+    <div class="copied" id="copied-toast">✓ Filename copied to clipboard!</div>
+
+    <script type="module">
+      // List of all icons (generated by fetch-figma-components-enhanced.js)
+      const ICONS = [
+        "name-fa7-solid-times",
+        "name-fa7-solid-floppy-disk",
+        "name-fa7-solid-caret-right",
+        "name-fa7-solid-users-viewfinder",
+        "name-fa7-solid-ranking-star",
+        "name-fa7-solid-dollar",
+        "name-fa7-solid-shopping-cart",
+        "name-fa7-solid-angle-double-left",
+        "name-fa7-solid-money-bill-wave-alt",
+        "name-fa7-solid-hand-holding-dollar",
+        "name-fa7-solid-minus",
+        "name-fa7-solid-location-arrow",
+        "name-fa7-solid-calendar",
+        "name-fa7-solid-ellipsis",
+        "name-fa7-solid-image",
+        "name-fa7-solid-camera",
+        "name-fa7-solid-user-plus",
+        "name-fa7-solid-address-card",
+        "name-fa7-solid-chart-simple",
+        "name-fa7-solid-user-graduate",
+        "name-fa7-solid-unlock",
+        "name-fa7-solid-file-upload",
+        "name-fa7-solid-award",
+        "name-fa7-solid-id-card-alt",
+        "name-fa7-solid-location-pin",
+        "name-fa7-solid-chart-pie",
+        "name-fa7-solid-user-edit",
+        "name-fa7-solid-check-circle",
+        "name-fa7-solid-message",
+        "name-fa7-solid-building-flag",
+        "name-fa7-solid-scale-balanced",
+        "name-fa7-solid-money-bill-1-wave",
+        "name-fa7-solid-alarm-clock",
+        "name-fa7-solid-palette",
+        "name-fa7-solid-exclamation-triangle",
+        "name-fa7-solid-users-rays",
+        "name-fa7-solid-bank",
+        "name-fa7-solid-backspace",
+        "name-fa7-solid-headphones",
+        "name-fa7-solid-user-friends",
+        "name-fa7-solid-umbrella",
+        "name-fa7-solid-shoe-prints",
+        "name-fa7-solid-angle-double-right",
+        "name-fa7-solid-handshake",
+        "name-fa7-solid-people-group",
+        "name-fa7-solid-angles-right",
+        "name-fa7-solid-mobile-phone",
+        "name-fa7-solid-building",
+        "name-fa7-solid-earth-africa",
+        "name-fa7-solid-car-rear",
+        "name-fa7-solid-atlas",
+        "name-fa7-solid-cloud-upload",
+        "name-fa7-solid-star",
+        "name-fa7-solid-video-camera",
+        "name-fa7-solid-users-line",
+        "house-solid",
+        "name-fa7-solid-money-bill-trend-up",
+        "name-fa7-solid-thumbs-up",
+        "name-fa7-solid-user-tag",
+        "name-fa7-solid-user-secret",
+        "name-fa7-solid-eye",
+        "name-fa7-solid-circle-play",
+        "name-fa7-solid-passport",
+        "name-fa7-solid-paper-plane",
+        "name-fa7-solid-caret-down",
+        "name-fa7-solid-paperclip",
+        "name-fa7-solid-circle-exclamation",
+        "name-fa7-solid-bars-staggered",
+        "name-fa7-solid-phone",
+        "name-fa7-solid-thumbs-down",
+        "name-fa7-solid-sack-dollar",
+        "name-fa7-solid-champagne-glasses",
+        "name-fa7-solid-user-check",
+        "name-fa7-solid-chevron-up",
+        "name-fa7-solid-location-dot",
+        "name-fa7-solid-money-bill-1",
+        "name-fa7-solid-graduation-cap",
+        "name-fa7-solid-rocket",
+        "name-fa7-solid-caret-up",
+        "name-fa7-solid-angles-left",
+        "name-fa7-solid-map-location",
+        "name-fa7-solid-contact-card",
+        "name-fa7-solid-cloud-arrow-down",
+        "name-fa7-solid-user-pen",
+        "name-fa7-solid-envelope",
+        "name-fa7-solid-microphone",
+        "name-fa7-solid-times-circle",
+        "name-fa7-solid-shirt",
+        "name-fa7-solid-balance-scale-right",
+        "name-fa7-solid-caret-left",
+        "name-fa7-solid-bars",
+        "name-fa7-solid-heart",
+        "name-fa7-solid-chevron-circle-up",
+        "name-fa7-solid-user-tie",
+        "name-fa7-solid-ellipsis-v",
+        "name-fa7-solid-plus",
+        "name-fa7-solid-sun",
+        "name-fa7-solid-trash",
+        "name-fa7-solid-moon",
+        "name-fa7-solid-chevron-down",
+        "name-fa7-solid-file-arrow-down",
+        "name-fa7-solid-key",
+        "name-fa7-solid-chevron-circle-right",
+        "name-fa7-solid-magnifying-glass",
+        "name-fa7-solid-user-large",
+        "name-fa7-solid-circle-user",
+        "name-fa7-solid-chevron-right",
+        "name-fa7-solid-chevron-left",
+        "name-fa7-solid-edit",
+        "name-fa7-solid-chevron-circle-left",
+        "name-fa7-solid-comment",
+        "name-fa7-solid-bell",
+        "name-fa7-solid-chevron-circle-down",
+        "name-fa7-solid-clock",
+        "name-fa7-solid-fire-flame-curved",
+        "name-fa7-solid-gear",
+        "name-fa7-solid-house",
+        "name-fa7-solid-xmark",
+      ];
+
+      const grid = document.getElementById("icon-grid");
+      const searchInput = document.getElementById("search-input");
+      const totalIconsEl = document.getElementById("total-icons");
+      const visibleIconsEl = document.getElementById("visible-icons");
+      const toast = document.getElementById("copied-toast");
+
+      let allCards = [];
+
+      function cleanName(name) {
+        return name
+          .replace("name-fa7-solid-", "")
+          .replace("house-solid", "house")
+          .replace(/-/g, " ")
+          .replace(/\b\w/g, (l) => l.toUpperCase());
+      }
+
+      function renderIcons(icons) {
+        grid.innerHTML = "";
+
+        if (icons.length === 0) {
+          grid.innerHTML = '<div class="empty-state">No icons found. Try a different search term.</div>';
+          visibleIconsEl.textContent = "0";
+          return;
+        }
+
+        icons.forEach((iconName) => {
+          const card = document.createElement("div");
+          card.className = "icon-card";
+          card.dataset.name = iconName;
+
+          card.innerHTML = `
+          <div class="icon-preview">
+            <img src="src/ui/icons/${iconName}.svg" alt="${iconName}">
+          </div>
+          <div class="icon-name">${cleanName(iconName)}</div>
+        `;
+
+          card.addEventListener("click", () => copyToClipboard(`${iconName}.svg`));
+
+          grid.appendChild(card);
+          allCards.push(card);
+        });
+
+        visibleIconsEl.textContent = icons.length;
+      }
+
+      function filterIcons(searchTerm) {
+        const term = searchTerm.toLowerCase().trim();
+
+        if (!term) {
+          allCards.forEach((card) => (card.style.display = ""));
+          visibleIconsEl.textContent = ICONS.length;
+          return;
+        }
+
+        let visibleCount = 0;
+        allCards.forEach((card) => {
+          const name = card.dataset.name.toLowerCase();
+          const matches = name.includes(term);
+          card.style.display = matches ? "" : "none";
+          if (matches) visibleCount++;
+        });
+
+        visibleIconsEl.textContent = visibleCount;
+      }
+
+      async function copyToClipboard(text) {
+        try {
+          await navigator.clipboard.writeText(text);
+          showToast();
+        } catch (err) {
+          console.error("Failed to copy:", err);
+        }
+      }
+
+      function showToast() {
+        toast.classList.add("show");
+        setTimeout(() => {
+          toast.classList.remove("show");
+        }, 2000);
+      }
+
+      // Initialize
+      totalIconsEl.textContent = ICONS.length;
+      renderIcons(ICONS);
+
+      // Search
+      searchInput.addEventListener("input", (e) => {
+        filterIcons(e.target.value);
+      });
+
+      // Focus search on '/' key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "/" && document.activeElement !== searchInput) {
+          e.preventDefault();
+          searchInput.focus();
+        }
+      });
+    </script>
+  </body>
+</html>
