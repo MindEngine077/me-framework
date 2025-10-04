@@ -168,8 +168,14 @@ body {
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.8; transform: scale(1.05); }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
 }
 
 /* ============================================
@@ -397,35 +403,83 @@ body {
    UTILITIES
    ============================================ */
 
-.text-center { text-align: center; }
-.text-left { text-align: left; }
-.text-right { text-align: right; }
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
 
-.mb-xs { margin-bottom: var(--space-xs, 4px); }
-.mb-sm { margin-bottom: var(--space-sm, 8px); }
-.mb-md { margin-bottom: var(--space-md, 16px); }
-.mb-lg { margin-bottom: var(--space-lg, 24px); }
-.mb-xl { margin-bottom: var(--space-xl, 32px); }
+.mb-xs {
+  margin-bottom: var(--space-xs, 4px);
+}
+.mb-sm {
+  margin-bottom: var(--space-sm, 8px);
+}
+.mb-md {
+  margin-bottom: var(--space-md, 16px);
+}
+.mb-lg {
+  margin-bottom: var(--space-lg, 24px);
+}
+.mb-xl {
+  margin-bottom: var(--space-xl, 32px);
+}
 
-.mt-xs { margin-top: var(--space-xs, 4px); }
-.mt-sm { margin-top: var(--space-sm, 8px); }
-.mt-md { margin-top: var(--space-md, 16px); }
-.mt-lg { margin-top: var(--space-lg, 24px); }
-.mt-xl { margin-top: var(--space-xl, 32px); }
+.mt-xs {
+  margin-top: var(--space-xs, 4px);
+}
+.mt-sm {
+  margin-top: var(--space-sm, 8px);
+}
+.mt-md {
+  margin-top: var(--space-md, 16px);
+}
+.mt-lg {
+  margin-top: var(--space-lg, 24px);
+}
+.mt-xl {
+  margin-top: var(--space-xl, 32px);
+}
 
-.gap-xs { gap: var(--space-xs, 4px); }
-.gap-sm { gap: var(--space-sm, 8px); }
-.gap-md { gap: var(--space-md, 16px); }
-.gap-lg { gap: var(--space-lg, 24px); }
+.gap-xs {
+  gap: var(--space-xs, 4px);
+}
+.gap-sm {
+  gap: var(--space-sm, 8px);
+}
+.gap-md {
+  gap: var(--space-md, 16px);
+}
+.gap-lg {
+  gap: var(--space-lg, 24px);
+}
 
-.flex { display: flex; }
-.flex-col { flex-direction: column; }
-.items-center { align-items: center; }
-.justify-center { justify-content: center; }
-.justify-between { justify-content: space-between; }
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.items-center {
+  align-items: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
 
-.w-full { width: 100%; }
-.h-full { height: 100%; }
+.w-full {
+  width: 100%;
+}
+.h-full {
+  height: 100%;
+}
 
 /* ============================================
    RESPONSIVE
