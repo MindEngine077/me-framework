@@ -2,7 +2,8 @@
   "surface": {
     "lightest": {
       "value": "{surface.300}",
-      "type": "color"
+      "type": "color",
+      "description": "Lightest surface level"
     },
     "lighter": {
       "value": "{surface.400}",
@@ -14,7 +15,8 @@
     },
     "base": {
       "value": "{surface.600}",
-      "type": "color"
+      "type": "color",
+      "description": "Default surface (cards, panels)"
     },
     "dark": {
       "value": "{surface.700}",
@@ -26,7 +28,18 @@
     },
     "darkest": {
       "value": "{surface.900}",
-      "type": "color"
+      "type": "color",
+      "description": "Page background"
+    },
+    "raised": {
+      "value": "{surface.500}",
+      "type": "color",
+      "description": "Elevated elements (modals, dropdowns)"
+    },
+    "overlay": {
+      "value": "{surface.400}",
+      "type": "color",
+      "description": "Overlay backgrounds"
     }
   },
   "text": {
@@ -40,7 +53,8 @@
     },
     "base": {
       "value": "{text.300}",
-      "type": "color"
+      "type": "color",
+      "description": "Primary text color"
     },
     "dark": {
       "value": "{text.400}",
@@ -49,48 +63,146 @@
     "darker": {
       "value": "{text.500}",
       "type": "color"
+    },
+    "primary": {
+      "value": "{text.100}",
+      "type": "color",
+      "description": "Main text (headings, body)"
+    },
+    "secondary": {
+      "value": "{text.300}",
+      "type": "color",
+      "description": "Muted text (hints, placeholders)"
+    },
+    "disabled": {
+      "value": "{text.500}",
+      "type": "color",
+      "description": "Disabled state text"
+    },
+    "inverse": {
+      "value": "{surface.900}",
+      "type": "color",
+      "description": "Text on colored backgrounds"
+    }
+  },
+  "background": {
+    "base": {
+      "value": "{surface.900}",
+      "type": "color",
+      "description": "Main page background"
+    },
+    "raised": {
+      "value": "{surface.800}",
+      "type": "color",
+      "description": "Raised surface background"
+    },
+    "overlay": {
+      "value": "{surface.700}",
+      "type": "color",
+      "description": "Overlay/modal backgrounds"
     }
   },
   "border": {
     "base": {
       "value": "{surface.400}",
-      "type": "color"
+      "type": "color",
+      "description": "Default border color"
     },
     "light": {
       "value": "{surface.300}",
-      "type": "color"
+      "type": "color",
+      "description": "Subtle border"
     },
     "dark": {
       "value": "{surface.500}",
-      "type": "color"
+      "type": "color",
+      "description": "Strong border"
+    },
+    "subtle": {
+      "value": "{surface.300}",
+      "type": "color",
+      "description": "Very light border"
+    },
+    "focus": {
+      "value": "{brand.primary.300}",
+      "type": "color",
+      "description": "Focus state border"
+    },
+    "error": {
+      "value": "{status.error.500}",
+      "type": "color",
+      "description": "Error state border"
+    },
+    "success": {
+      "value": "{status.success.500}",
+      "type": "color",
+      "description": "Success state border"
     }
   },
   "accent": {
     "primary": {
       "value": "{brand.primary.300}",
-      "type": "color"
+      "type": "color",
+      "description": "Primary brand color (CTAs, links)"
     },
     "secondary": {
       "value": "{brand.secondary.300}",
-      "type": "color"
+      "type": "color",
+      "description": "Secondary brand color"
+    },
+    "hover": {
+      "value": "{brand.primary.400}",
+      "type": "color",
+      "description": "Hover state for primary"
+    },
+    "active": {
+      "value": "{brand.primary.500}",
+      "type": "color",
+      "description": "Active/pressed state"
     }
   },
   "status": {
     "success": {
       "value": "{status.success.500}",
-      "type": "color"
+      "type": "color",
+      "description": "Success state (green)"
     },
     "error": {
       "value": "{status.error.500}",
-      "type": "color"
+      "type": "color",
+      "description": "Error/danger state (red)"
     },
     "info": {
       "value": "{status.info.500}",
-      "type": "color"
+      "type": "color",
+      "description": "Info state (blue)"
     },
     "warning": {
       "value": "{status.warning.500}",
-      "type": "color"
+      "type": "color",
+      "description": "Warning state (orange/yellow)"
+    }
+  },
+  "semantic": {
+    "success": {
+      "value": "{status.success.500}",
+      "type": "color",
+      "description": "Semantic success (alias)"
+    },
+    "error": {
+      "value": "{status.error.500}",
+      "type": "color",
+      "description": "Semantic error (alias)"
+    },
+    "warning": {
+      "value": "{status.warning.500}",
+      "type": "color",
+      "description": "Semantic warning (alias)"
+    },
+    "info": {
+      "value": "{status.info.500}",
+      "type": "color",
+      "description": "Semantic info (alias)"
     }
   },
   "heading": {

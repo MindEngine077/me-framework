@@ -7,262 +7,127 @@
     <link rel="stylesheet" href="src/styles/tokens.css" />
     <link rel="stylesheet" href="src/styles/base.css" />
     <link rel="stylesheet" href="src/styles/theme-dark.css" />
-    <style>
-      body {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background: var(--background-base, #0a0a0f);
-        padding: var(--space-xl, 32px);
-        font-family: var(--font-family-base, system-ui, -apple-system, sans-serif);
-      }
-
-      .hero {
-        text-align: center;
-        margin-bottom: var(--space-xl, 32px);
-        max-width: 800px;
-      }
-
-      .hero-title {
-        font-size: clamp(2rem, 5vw, 4rem);
-        font-weight: 700;
-        background: linear-gradient(135deg, var(--accent-primary, #5c6ef8), #a78bfa);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        margin-bottom: var(--space-md, 16px);
-      }
-
-      .hero-subtitle {
-        font-size: var(--font-size-heading-sm, 1.25rem);
-        color: var(--text-secondary, rgba(255, 255, 255, 0.7));
-        margin-bottom: var(--space-sm, 8px);
-      }
-
-      .hero-stats {
-        display: flex;
-        gap: var(--space-lg, 24px);
-        justify-content: center;
-        flex-wrap: wrap;
-        margin-top: var(--space-lg, 24px);
-      }
-
-      .stat {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: var(--space-xs, 4px);
-      }
-
-      .stat-value {
-        font-size: var(--font-size-heading-md, 1.5rem);
-        font-weight: 600;
-        color: var(--accent-primary, #5c6ef8);
-      }
-
-      .stat-label {
-        font-size: var(--font-size-body-sm, 0.875rem);
-        color: var(--text-secondary, rgba(255, 255, 255, 0.7));
-      }
-
-      .tools-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: var(--space-lg, 24px);
-        max-width: 1200px;
-        width: 100%;
-      }
-
-      .tool-card {
-        background: var(--surface-raised, rgba(255, 255, 255, 0.05));
-        border: 1px solid var(--border-base, rgba(255, 255, 255, 0.12));
-        border-radius: var(--radius-lg, 16px);
-        padding: var(--space-xl, 32px);
-        transition: all 200ms ease;
-        text-decoration: none;
-        color: inherit;
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-md, 16px);
-      }
-
-      .tool-card:hover {
-        transform: translateY(-4px);
-        background: var(--surface-overlay, rgba(255, 255, 255, 0.08));
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-        border-color: var(--accent-primary, #5c6ef8);
-      }
-
-      .tool-icon {
-        font-size: 3rem;
-        line-height: 1;
-      }
-
-      .tool-title {
-        font-size: var(--font-size-heading-sm, 1.25rem);
-        font-weight: 600;
-        color: var(--text-primary, #ffffff);
-      }
-
-      .tool-desc {
-        font-size: var(--font-size-body-md, 1rem);
-        color: var(--text-secondary, rgba(255, 255, 255, 0.7));
-        line-height: 1.6;
-      }
-
-      .tool-badge {
-        display: inline-block;
-        padding: var(--space-xs, 4px) var(--space-sm, 8px);
-        background: var(--accent-primary, #5c6ef8);
-        color: var(--text-100, #ffffff);
-        border-radius: var(--radius-sm, 8px);
-        font-size: var(--font-size-body-xs, 0.75rem);
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
-
-      .tool-badge.new {
-        background: linear-gradient(135deg, #10b981, #059669);
-        animation: pulse 2s ease-in-out infinite;
-      }
-
-      @keyframes pulse {
-        0%,
-        100% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0.8;
-          transform: scale(1.05);
-        }
-      }
-
-      .footer {
-        margin-top: var(--space-xl, 32px);
-        text-align: center;
-        color: var(--text-secondary, rgba(255, 255, 255, 0.5));
-        font-size: var(--font-size-body-sm, 0.875rem);
-      }
-
-      .footer a {
-        color: var(--accent-primary, #5c6ef8);
-        text-decoration: none;
-      }
-
-      .footer a:hover {
-        text-decoration: underline;
-      }
-    </style>
+    <link rel="stylesheet" href="src/styles/demo.css" />
   </head>
-  <body>
-    <div class="hero">
-      <h1 class="hero-title">⚡ ME Framework</h1>
-      <p class="hero-subtitle">Mobile-First Design System Connected to Figma</p>
+  <body class="page-container">
+    <div class="page-content">
+      <div class="hero">
+        <h1 class="hero-title">⚡ ME Framework</h1>
+        <p class="hero-subtitle">Mobile-First Design System Connected to Figma</p>
 
-      <div class="hero-stats">
-        <div class="stat">
-          <div class="stat-value">749</div>
-          <div class="stat-label">Design Tokens</div>
-        </div>
-        <div class="stat">
-          <div class="stat-value">117</div>
-          <div class="stat-label">SVG Icons</div>
-        </div>
-        <div class="stat">
-          <div class="stat-value">9</div>
-          <div class="stat-label">Components</div>
-        </div>
-        <div class="stat">
-          <div class="stat-value">570</div>
-          <div class="stat-label">Figma Assets</div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-value">749</div>
+            <div class="stat-label">Design Tokens</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">117</div>
+            <div class="stat-label">SVG Icons</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">9</div>
+            <div class="stat-label">Components</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">570</div>
+            <div class="stat-label">Figma Assets</div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="tools-grid">
-      <a href="pages/playground.html" class="tool-card">
-        <div class="tool-icon">📱</div>
-        <div>
-          <div class="tool-title">
-            Mobile Playground
-            <span class="tool-badge new">ULTRA!</span>
+      <div class="tools-grid">
+        <a href="pages/playground.html" class="tool-card">
+          <div class="tool-icon">📱</div>
+          <div>
+            <div class="tool-title">
+              Mobile Playground
+              <span class="tool-badge new">ULTRA!</span>
+            </div>
+            <div class="tool-desc">Drag & drop components in an iPhone frame. Live edit HTML/CSS. Export to codebase.</div>
           </div>
-          <div class="tool-desc">Drag & drop components in an iPhone frame. Live edit HTML/CSS. Export to codebase.</div>
-        </div>
-      </a>
+        </a>
 
-      <a href="pages/demo.html" class="tool-card">
-        <div class="tool-icon">🎨</div>
-        <div>
-          <div class="tool-title">Component Showcase</div>
-          <div class="tool-desc">Browse all components and design tokens. Visual documentation with live examples.</div>
-        </div>
-      </a>
-
-      <a href="pages/icons.html" class="tool-card">
-        <div class="tool-icon">🎭</div>
-        <div>
-          <div class="tool-title">Icon Viewer</div>
-          <div class="tool-desc">Search and browse 117 SVG icons. Click to copy filename. Filter by keyword.</div>
-        </div>
-      </a>
-
-      <a href="docs/WORKFLOW.md" class="tool-card">
-        <div class="tool-icon">📋</div>
-        <div>
-          <div class="tool-title">Workflow Guide</div>
-          <div class="tool-desc">Learn the Figma → AutoHTML → Code workflow. Step-by-step instructions.</div>
-        </div>
-      </a>
-
-      <a href="docs/PLAYGROUND.md" class="tool-card">
-        <div class="tool-icon">🚀</div>
-        <div>
-          <div class="tool-title">
-            Playground Docs
-            <span class="tool-badge new">NEW!</span>
+        <a href="pages/demo.html" class="tool-card">
+          <div class="tool-icon">🎨</div>
+          <div>
+            <div class="tool-title">Component Showcase</div>
+            <div class="tool-desc">Browse all components and design tokens. Visual documentation with live examples.</div>
           </div>
-          <div class="tool-desc">Complete guide to the mobile playground. Tips, tricks, and advanced usage.</div>
-        </div>
-      </a>
+        </a>
 
-      <a href="docs/ENHANCED-SCAFFOLD.md" class="tool-card">
-        <div class="tool-icon">⚙️</div>
-        <div>
-          <div class="tool-title">Enhanced Scaffold</div>
-          <div class="tool-desc">Auto-download SVG icons and generate variant CSS from Figma components.</div>
-        </div>
-      </a>
+        <a href="pages/icons.html" class="tool-card">
+          <div class="tool-icon">🎭</div>
+          <div>
+            <div class="tool-title">Icon Viewer</div>
+            <div class="tool-desc">Search and browse 117 SVG icons. Click to copy filename. Filter by keyword.</div>
+          </div>
+        </a>
 
-      <a href="pages/figma-prototype.html" class="tool-card">
-        <div class="tool-icon">🎯</div>
-        <div>
-          <div class="tool-title">Figma Prototype</div>
-          <div class="tool-desc">View live Figma prototype in iPhone frame. Direct link to your Figma design.</div>
-        </div>
-      </a>
+        <a href="docs/WORKFLOW.md" class="tool-card">
+          <div class="tool-icon">📋</div>
+          <div>
+            <div class="tool-title">Workflow Guide</div>
+            <div class="tool-desc">Learn the Figma → AutoHTML → Code workflow. Step-by-step instructions.</div>
+          </div>
+        </a>
 
-      <a href="pages/page-default.html" class="tool-card">
-        <div class="tool-icon">📱</div>
-        <div>
-          <div class="tool-title">Page Template</div>
-          <div class="tool-desc">Complete mobile page template exported from Figma. Reference for component structure.</div>
-        </div>
-      </a>
-    </div>
+        <a href="docs/PLAYGROUND.md" class="tool-card">
+          <div class="tool-icon">🚀</div>
+          <div>
+            <div class="tool-title">
+              Playground Docs
+              <span class="tool-badge new">NEW!</span>
+            </div>
+            <div class="tool-desc">Complete guide to the mobile playground. Tips, tricks, and advanced usage.</div>
+          </div>
+        </a>
 
-    <div class="footer">
-      <p>Made with ❤️ using Figma REST API</p>
-      <p style="margin-top: 8px">
-        <a href="README.md">Documentation</a>
-        •
-        <a href="docs/SETUP-COMPLETE.md">Setup Guide</a>
-        •
-        <a href="https://github.com/MindEngine077/me-framework" target="_blank">GitHub</a>
-      </p>
+        <a href="docs/ENHANCED-SCAFFOLD.md" class="tool-card">
+          <div class="tool-icon">⚙️</div>
+          <div>
+            <div class="tool-title">Enhanced Scaffold</div>
+            <div class="tool-desc">Auto-download SVG icons and generate variant CSS from Figma components.</div>
+          </div>
+        </a>
+
+        <a href="pages/figma-prototype.html" class="tool-card">
+          <div class="tool-icon">🎯</div>
+          <div>
+            <div class="tool-title">Figma Prototype</div>
+            <div class="tool-desc">View live Figma prototype in iPhone frame. Direct link to your Figma design.</div>
+          </div>
+        </a>
+
+        <a href="pages/page-default.html" class="tool-card">
+          <div class="tool-icon">📱</div>
+          <div>
+            <div class="tool-title">Page Template</div>
+            <div class="tool-desc">Complete mobile page template exported from Figma. Reference for component structure.</div>
+          </div>
+        </a>
+
+        <a href="pages/input-demo.html" class="tool-card">
+          <div class="tool-icon">📝</div>
+          <div>
+            <div class="tool-title">
+              Input Components
+              <span class="tool-badge new">NEW!</span>
+            </div>
+            <div class="tool-desc">Real semantic HTML inputs from Figma. With validation, states, and full accessibility.</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="footer">
+        <p>Made with ❤️ using Figma REST API</p>
+        <p class="mt-sm">
+          <a href="README.md">Documentation</a>
+          •
+          <a href="docs/SETUP-COMPLETE.md">Setup Guide</a>
+          •
+          <a href="https://github.com/MindEngine077/me-framework" target="_blank" rel="noopener">GitHub</a>
+        </p>
+      </div>
     </div>
   </body>
 </html>

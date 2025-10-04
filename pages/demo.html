@@ -6,29 +6,23 @@
     <title>ME Framework - Component Demo</title>
 
     <!-- Design Tokens -->
-    <link rel="stylesheet" href="src/styles/tokens.css" />
-    <link rel="stylesheet" href="src/styles/base.css" />
-    <link rel="stylesheet" href="src/styles/theme-dark.css" />
+    <link rel="stylesheet" href="../src/styles/tokens.css" />
+    <link rel="stylesheet" href="../src/styles/base.css" />
+    <link rel="stylesheet" href="../src/styles/theme-dark.css" />
+    <link rel="stylesheet" href="../src/styles/demo.css" />
 
     <!-- Component Styles -->
-    <link rel="stylesheet" href="src/ui/me-header/me-header.css" />
-    <link rel="stylesheet" href="src/ui/me-top/me-top.css" />
-    <link rel="stylesheet" href="src/ui/me-safe-top/me-safe-top.css" />
-    <link rel="stylesheet" href="src/ui/me-input/me-input.css" />
-    <link rel="stylesheet" href="src/ui/me-input-feedback/me-input-feedback.css" />
-    <link rel="stylesheet" href="src/ui/me-footnav/me-footnav.css" />
-    <link rel="stylesheet" href="src/ui/me-bottom/me-bottom.css" />
-    <link rel="stylesheet" href="src/ui/me-safe-bottom/me-safe-bottom.css" />
+    <link rel="stylesheet" href="../src/ui/me-header/me-header.css" />
+    <link rel="stylesheet" href="../src/ui/me-top/me-top.css" />
+    <link rel="stylesheet" href="../src/ui/me-safe-top/me-safe-top.css" />
+    <link rel="stylesheet" href="../src/ui/me-input/me-input.css" />
+    <link rel="stylesheet" href="../src/ui/me-input-feedback/me-input-feedback.css" />
+    <link rel="stylesheet" href="../src/ui/me-footnav/me-footnav.css" />
+    <link rel="stylesheet" href="../src/ui/me-bottom/me-bottom.css" />
+    <link rel="stylesheet" href="../src/ui/me-safe-bottom/me-safe-bottom.css" />
 
     <style>
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        background: var(--background-base, #0a0a0a);
-        color: var(--text-primary, #ffffff);
-      }
-
+      /* Demo-specific styles - token display cards */
       .demo-container {
         max-width: 1200px;
         margin: 0 auto;
@@ -37,28 +31,6 @@
 
       .demo-section {
         margin-bottom: var(--space-2xl, 48px);
-        padding: var(--space-xl, 32px);
-        background: var(--surface-raised, rgba(255, 255, 255, 0.05));
-        border-radius: var(--radius-lg, 16px);
-        border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.08));
-      }
-
-      .demo-section h2 {
-        margin: 0 0 var(--space-lg, 24px) 0;
-        font-size: var(--font-size-h2, 2rem);
-        color: var(--text-100, #ffffff);
-      }
-
-      .demo-section h3 {
-        margin: var(--space-lg, 24px) 0 var(--space-md, 16px) 0;
-        font-size: var(--font-size-h3, 1.5rem);
-        color: var(--text-200, rgba(255, 255, 255, 0.9));
-      }
-
-      .demo-grid {
-        display: grid;
-        gap: var(--space-md, 16px);
-        margin-top: var(--space-md, 16px);
       }
 
       .token-display {
@@ -85,6 +57,36 @@
       .token-card__value {
         font-size: var(--font-size-md, 1rem);
         color: var(--text-primary, #ffffff);
+      }
+
+      .token-swatch {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+      }
+
+      .token-swatch--primary {
+        background: var(--accent-primary);
+      }
+
+      .token-swatch--surface {
+        background: var(--surface-raised, rgba(255, 255, 255, 0.05));
+        border: 1px solid var(--border-base);
+      }
+
+      .token-swatch--radius-sm {
+        background: var(--accent-primary);
+        border-radius: var(--radius-sm, 8px);
+      }
+
+      .token-swatch--radius-md {
+        background: var(--accent-primary);
+        border-radius: var(--radius-md, 12px);
+      }
+
+      .token-swatch--radius-lg {
+        background: var(--accent-primary);
+        border-radius: var(--radius-lg, 16px);
       }
 
       .component-showcase {
@@ -125,12 +127,12 @@
       }
     </style>
   </head>
-  <body>
-    <div class="demo-container">
+  <body class="page-container">
+    <div class="demo-container page-content">
       <!-- Header -->
       <div class="demo-section">
         <h2>🎨 ME Framework - Figma Design System</h2>
-        <p style="color: var(--text-secondary, rgba(255, 255, 255, 0.7)); font-size: var(--font-size-lg, 1.125rem)">A mobile-first design system connected to Figma with Token Studio integration</p>
+        <p class="text-secondary text-lg">A mobile-first design system connected to Figma with Token Studio integration</p>
 
         <div class="stats">
           <div class="stat-card">
@@ -151,7 +153,7 @@
       <!-- Components -->
       <div class="demo-section">
         <h2>📦 Scaffolded Components</h2>
-        <p style="color: var(--text-secondary)">Core UI components generated from Figma</p>
+        <p class="text-secondary">Core UI components generated from Figma</p>
 
         <h3>Navigation</h3>
         <div class="component-showcase">
@@ -196,24 +198,24 @@
       <!-- Design Tokens Sample -->
       <div class="demo-section">
         <h2>🎨 Design Tokens (Sample)</h2>
-        <p style="color: var(--text-secondary)">Your Figma variables as CSS custom properties</p>
+        <p class="text-secondary">Your Figma variables as CSS custom properties</p>
 
         <h3>Colors</h3>
         <div class="token-display">
           <div class="token-card">
             <div class="token-card__name">--accent-primary</div>
-            <div class="token-card__value" style="color: var(--accent-primary, #5c6ef8)">
-              <div style="width: 40px; height: 40px; background: var(--accent-primary); border-radius: 8px"></div>
+            <div class="token-card__value">
+              <div class="token-swatch token-swatch--primary"></div>
             </div>
           </div>
           <div class="token-card">
             <div class="token-card__name">--text-primary</div>
-            <div class="token-card__value" style="color: var(--text-primary, #ffffff)">Aa</div>
+            <div class="token-card__value">Aa</div>
           </div>
           <div class="token-card">
             <div class="token-card__name">--surface-raised</div>
             <div class="token-card__value">
-              <div style="width: 40px; height: 40px; background: var(--surface-raised, rgba(255, 255, 255, 0.05)); border-radius: 8px; border: 1px solid var(--border-base)"></div>
+              <div class="token-swatch token-swatch--surface"></div>
             </div>
           </div>
         </div>
@@ -239,19 +241,19 @@
           <div class="token-card">
             <div class="token-card__name">--radius-sm</div>
             <div class="token-card__value">
-              <div style="width: 40px; height: 40px; background: var(--accent-primary); border-radius: var(--radius-sm, 8px)"></div>
+              <div class="token-swatch token-swatch--radius-sm"></div>
             </div>
           </div>
           <div class="token-card">
             <div class="token-card__name">--radius-md</div>
             <div class="token-card__value">
-              <div style="width: 40px; height: 40px; background: var(--accent-primary); border-radius: var(--radius-md, 12px)"></div>
+              <div class="token-swatch token-swatch--radius-md"></div>
             </div>
           </div>
           <div class="token-card">
             <div class="token-card__name">--radius-lg</div>
             <div class="token-card__value">
-              <div style="width: 40px; height: 40px; background: var(--accent-primary); border-radius: var(--radius-lg, 16px)"></div>
+              <div class="token-swatch token-swatch--radius-lg"></div>
             </div>
           </div>
         </div>
@@ -260,12 +262,37 @@
       <!-- Next Steps -->
       <div class="demo-section">
         <h2>🚀 Next Steps</h2>
-        <ol style="color: var(--text-secondary); line-height: 1.8">
-          <li><strong>Customize Components:</strong> Edit the CSS files in <code>src/ui/*/</code> to match your Figma designs</li>
-          <li><strong>Check Token Variables:</strong> Review <code>src/styles/tokens.css</code> for all 749 available CSS variables</li>
-          <li><strong>Add Figma Variables File:</strong> Update <code>.env</code> with your ME | Variables file key for complete token sync</li>
-          <li><strong>Re-sync:</strong> Run <code>npm run figma:scaffold</code> whenever you update Figma components</li>
-          <li><strong>Build Tokens:</strong> Run <code>npm run tokens:build</code> after updating Token Studio JSON files</li>
+        <ol class="text-secondary workflow-list">
+          <li>
+            <strong>Customize Components:</strong>
+            Edit the CSS files in
+            <code>src/ui/*/</code>
+            to match your Figma designs
+          </li>
+          <li>
+            <strong>Check Token Variables:</strong>
+            Review
+            <code>src/styles/tokens.css</code>
+            for all 749 available CSS variables
+          </li>
+          <li>
+            <strong>Add Figma Variables File:</strong>
+            Update
+            <code>.env</code>
+            with your ME | Variables file key for complete token sync
+          </li>
+          <li>
+            <strong>Re-sync:</strong>
+            Run
+            <code>npm run figma:scaffold</code>
+            whenever you update Figma components
+          </li>
+          <li>
+            <strong>Build Tokens:</strong>
+            Run
+            <code>npm run tokens:build</code>
+            after updating Token Studio JSON files
+          </li>
         </ol>
       </div>
     </div>

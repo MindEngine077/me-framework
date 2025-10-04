@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ME Input - Form Demo</title>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="../src/fonts/fonts.css" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="../src/styles/tokens.css" />
+    <link rel="stylesheet" href="../src/styles/base.css" />
+    <link rel="stylesheet" href="../src/styles/theme-dark.css" />
+    <link rel="stylesheet" href="../src/styles/demo.css" />
+    <link rel="stylesheet" href="../src/ui/me-input/me-input.css" />
+
+    <style>
+      .demo-form {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .form-section {
+        margin-bottom: var(--space-2xl, 48px);
+      }
+
+      .form-section h2 {
+        margin-bottom: var(--space-lg, 24px);
+        color: var(--accent-primary, #5c6ef8);
+      }
+
+      .form-grid {
+        display: grid;
+        gap: var(--space-lg, 24px);
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-md, 16px);
+      }
+
+      @media (max-width: 640px) {
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .demo-code {
+        margin-top: var(--space-md, 16px);
+        padding: var(--space-md, 16px);
+        background: var(--surface-base, rgba(255, 255, 255, 0.03));
+        border: 1px solid var(--border-base, rgba(255, 255, 255, 0.12));
+        border-radius: var(--radius-md, 12px);
+        font-family: "Monaco", "Courier New", monospace;
+        font-size: 13px;
+        color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+        overflow-x: auto;
+      }
+
+      .form-actions {
+        display: flex;
+        gap: var(--space-md, 16px);
+        margin-top: var(--space-xl, 32px);
+      }
+
+      .results {
+        margin-top: var(--space-xl, 32px);
+        padding: var(--space-lg, 24px);
+        background: var(--surface-raised, rgba(255, 255, 255, 0.05));
+        border: 1px solid var(--accent-primary, #5c6ef8);
+        border-radius: var(--radius-lg, 16px);
+        display: none;
+      }
+
+      .results.show {
+        display: block;
+      }
+
+      .results h3 {
+        margin-top: 0;
+        color: var(--accent-primary, #5c6ef8);
+      }
+
+      .results pre {
+        background: var(--surface-base, rgba(255, 255, 255, 0.03));
+        padding: var(--space-md, 16px);
+        border-radius: var(--radius-md, 12px);
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body class="page-container">
+    <div class="page-content demo-form">
+      <!-- Header -->
+      <div class="hero mb-xl">
+        <h1 class="hero-title">📝 ME Input Component</h1>
+        <p class="hero-subtitle">Semantic HTML input fields from Figma with full validation</p>
+      </div>
+
+      <!-- Basic Inputs -->
+      <div class="form-section">
+        <h2>Basic Inputs</h2>
+        <div class="form-grid">
+          <!-- Text input -->
+          <div class="me-input-group">
+            <label for="name" class="me-input__label">Full Name</label>
+            <div class="me-input">
+              <input type="text" id="name" class="me-input__field" placeholder="John Doe" required />
+            </div>
+            <span class="me-input__hint">Enter your full name</span>
+          </div>
+
+          <!-- Email input -->
+          <div class="me-input-group">
+            <label for="email" class="me-input__label">Email</label>
+            <div class="me-input">
+              <input type="email" id="email" class="me-input__field" placeholder="you@example.com" required />
+            </div>
+          </div>
+
+          <!-- Phone input -->
+          <div class="me-input-group">
+            <label for="phone" class="me-input__label">Phone (Optional)</label>
+            <div class="me-input">
+              <input type="tel" id="phone" class="me-input__field" placeholder="+31 6 12345678" />
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-code">
+          &lt;div class="me-input-group"&gt; &lt;label for="email" class="me-input__label"&gt;Email&lt;/label&gt; &lt;div class="me-input"&gt; &lt;input type="email" class="me-input__field" placeholder="you@example.com"
+          required /&gt; &lt;/div&gt; &lt;/div&gt;
+        </div>
+      </div>
+
+      <!-- With Icons -->
+      <div class="form-section">
+        <h2>With Icons</h2>
+        <div class="form-grid">
+          <!-- Search with left icon -->
+          <div class="me-input-group">
+            <label for="search" class="me-input__label">Search</label>
+            <div class="me-input">
+              <svg class="me-input__icon-left" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M7.333 12.667A5.333 5.333 0 1 0 7.333 2a5.333 5.333 0 0 0 0 10.667ZM14 14l-2.9-2.9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <input type="search" id="search" class="me-input__field" placeholder="Search..." />
+            </div>
+          </div>
+
+          <!-- Password with right icon -->
+          <div class="me-input-group">
+            <label for="password" class="me-input__label">Password</label>
+            <div class="me-input">
+              <input type="password" id="password" class="me-input__field" placeholder="Enter password" minlength="8" required />
+              <svg class="me-input__icon-right" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path
+                  d="M12.667 7.333V4.667a4.667 4.667 0 1 0-9.334 0v2.666m-1.666 0h12.666a1.333 1.333 0 0 1 1.333 1.334v5.333A1.333 1.333 0 0 1 14.333 16H1.667a1.333 1.333 0 0 1-1.334-1.333V8.667a1.333 1.333 0 0 1 1.334-1.334Z"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <span class="me-input__hint">At least 8 characters</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Size Variants -->
+      <div class="form-section">
+        <h2>Size Variants</h2>
+        <div class="form-grid">
+          <!-- Small -->
+          <div class="me-input-group">
+            <label for="small" class="me-input__label">Small Input</label>
+            <div class="me-input me-input--sm">
+              <input type="text" id="small" class="me-input__field" placeholder="Small size (36px)" />
+            </div>
+          </div>
+
+          <!-- Default -->
+          <div class="me-input-group">
+            <label for="default" class="me-input__label">Default Input</label>
+            <div class="me-input">
+              <input type="text" id="default" class="me-input__field" placeholder="Default size (48px)" />
+            </div>
+          </div>
+
+          <!-- Large -->
+          <div class="me-input-group">
+            <label for="large" class="me-input__label">Large Input</label>
+            <div class="me-input me-input--lg">
+              <input type="text" id="large" class="me-input__field" placeholder="Large size (56px)" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- States -->
+      <div class="form-section">
+        <h2>States</h2>
+        <div class="form-grid">
+          <!-- Error -->
+          <div class="me-input-group">
+            <label for="error-input" class="me-input__label">Error State</label>
+            <div class="me-input me-input--error">
+              <input type="email" id="error-input" class="me-input__field" placeholder="invalid-email" aria-invalid="true" aria-describedby="error-msg" />
+            </div>
+            <span id="error-msg" class="me-input__error">Please enter a valid email address</span>
+          </div>
+
+          <!-- Success -->
+          <div class="me-input-group">
+            <label for="success-input" class="me-input__label">Success State</label>
+            <div class="me-input me-input--success">
+              <input type="email" id="success-input" class="me-input__field" placeholder="user@example.com" value="valid@email.com" />
+            </div>
+          </div>
+
+          <!-- Disabled -->
+          <div class="me-input-group">
+            <label for="disabled-input" class="me-input__label">Disabled State</label>
+            <div class="me-input me-input--disabled">
+              <input type="text" id="disabled-input" class="me-input__field" placeholder="This field is disabled" disabled />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Complete Form Example -->
+      <div class="form-section">
+        <h2>Complete Form</h2>
+        <form id="demo-form" novalidate>
+          <div class="form-grid">
+            <div class="form-row">
+              <div class="me-input-group">
+                <label for="first-name" class="me-input__label">First Name *</label>
+                <div class="me-input">
+                  <input type="text" id="first-name" class="me-input__field" placeholder="John" required />
+                </div>
+              </div>
+
+              <div class="me-input-group">
+                <label for="last-name" class="me-input__label">Last Name *</label>
+                <div class="me-input">
+                  <input type="text" id="last-name" class="me-input__field" placeholder="Doe" required />
+                </div>
+              </div>
+            </div>
+
+            <div class="me-input-group">
+              <label for="form-email" class="me-input__label">Email Address *</label>
+              <div class="me-input">
+                <input type="email" id="form-email" class="me-input__field" placeholder="john.doe@example.com" required />
+              </div>
+            </div>
+
+            <div class="me-input-group">
+              <label for="company" class="me-input__label">Company</label>
+              <div class="me-input">
+                <input type="text" id="company" class="me-input__field" placeholder="Acme Inc." />
+              </div>
+            </div>
+
+            <div class="me-input-group">
+              <label for="message" class="me-input__label">Message *</label>
+              <div class="me-input">
+                <input type="text" id="message" class="me-input__field" placeholder="Tell us more..." required />
+              </div>
+              <span class="me-input__hint">Minimum 10 characters</span>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn">Submit Form</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+          </div>
+        </form>
+
+        <div id="form-results" class="results">
+          <h3>✅ Form Submitted!</h3>
+          <pre id="form-data"></pre>
+        </div>
+      </div>
+
+      <!-- Back to home -->
+      <div class="footer">
+        <p><a href="../index.html">← Back to Home</a></p>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module">
+      import { initMeInput, MeInput } from "../src/ui/me-input/me-input.js";
+
+      // Initialize all inputs
+      const inputs = initMeInput();
+      console.log(`✅ Initialized ${inputs.length} input fields`);
+
+      // Form submission demo
+      const form = document.getElementById("demo-form");
+      const results = document.getElementById("form-results");
+      const formData = document.getElementById("form-data");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        // Get form data
+        const data = new FormData(form);
+        const json = Object.fromEntries(data.entries());
+
+        // Show results
+        formData.textContent = JSON.stringify(json, null, 2);
+        results.classList.add("show");
+
+        // Scroll to results
+        results.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      });
+
+      form.addEventListener("reset", () => {
+        results.classList.remove("show");
+      });
+    </script>
+  </body>
+</html>

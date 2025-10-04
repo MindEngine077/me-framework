@@ -8,6 +8,7 @@
     "core_layout/core",
     "core_border/core",
     "semantic_layout/core",
-    "semantic_color/core"
+    "semantic_color/core",
+    "component_input/core"
   ]
 }

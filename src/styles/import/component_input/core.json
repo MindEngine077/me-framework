@@ -1,0 +1,155 @@
+{
+  "input": {
+    "colors": {
+      "background": {
+        "value": "{background.base}",
+        "type": "color",
+        "description": "Input field background"
+      },
+      "border": {
+        "default": {
+          "value": "{border.base}",
+          "type": "color",
+          "description": "Default border color"
+        },
+        "hover": {
+          "value": "{border.dark}",
+          "type": "color",
+          "description": "Border on hover"
+        },
+        "focus": {
+          "value": "{accent.primary}",
+          "type": "color",
+          "description": "Border when focused"
+        },
+        "error": {
+          "value": "{semantic.error}",
+          "type": "color",
+          "description": "Border in error state"
+        },
+        "success": {
+          "value": "{semantic.success}",
+          "type": "color",
+          "description": "Border in success state"
+        },
+        "disabled": {
+          "value": "{border.subtle}",
+          "type": "color",
+          "description": "Border when disabled"
+        }
+      },
+      "text": {
+        "value": "{text.primary}",
+        "type": "color",
+        "description": "Input text color"
+      },
+      "placeholder": {
+        "value": "{text.secondary}",
+        "type": "color",
+        "description": "Placeholder text color"
+      },
+      "icon": {
+        "value": "{text.secondary}",
+        "type": "color",
+        "description": "Icon color"
+      },
+      "label": {
+        "value": "{text.primary}",
+        "type": "color",
+        "description": "Label text color"
+      }
+    },
+    "layout": {
+      "height": {
+        "sm": {
+          "value": "36px",
+          "type": "dimension",
+          "description": "Small input height"
+        },
+        "md": {
+          "value": "48px",
+          "type": "dimension",
+          "description": "Default input height"
+        },
+        "lg": {
+          "value": "56px",
+          "type": "dimension",
+          "description": "Large input height"
+        }
+      },
+      "padding": {
+        "x": {
+          "value": "{space.lg}",
+          "type": "dimension",
+          "description": "Horizontal padding"
+        },
+        "y": {
+          "value": "{space.md}",
+          "type": "dimension",
+          "description": "Vertical padding"
+        }
+      },
+      "gap": {
+        "value": "{space.md}",
+        "type": "dimension",
+        "description": "Gap between icon and text"
+      },
+      "radius": {
+        "value": "{radius.md}",
+        "type": "dimension",
+        "description": "Border radius"
+      },
+      "border-width": {
+        "value": "1px",
+        "type": "dimension",
+        "description": "Border width"
+      }
+    },
+    "typography": {
+      "font-family": {
+        "value": "{font.family.base}",
+        "type": "fontFamilies",
+        "description": "Input font family"
+      },
+      "font-size": {
+        "value": "{font.size.body.md}",
+        "type": "dimension",
+        "description": "Input text size"
+      },
+      "font-weight": {
+        "value": "{font.weight.regular}",
+        "type": "fontWeights",
+        "description": "Input font weight"
+      },
+      "letter-spacing": {
+        "value": "0.5px",
+        "type": "dimension",
+        "description": "Letter spacing"
+      },
+      "line-height": {
+        "value": "1.5",
+        "type": "number",
+        "description": "Line height"
+      }
+    },
+    "effects": {
+      "shadow": {
+        "default": {
+          "value": "3px 3px 6px 0px rgba(0, 0, 0, 0.25)",
+          "type": "boxShadow",
+          "description": "Default shadow"
+        },
+        "focus": {
+          "value": "0 0 0 3px rgba(242, 148, 165, 0.2)",
+          "type": "boxShadow",
+          "description": "Focus ring shadow (20% opacity brand primary)"
+        }
+      },
+      "transition": {
+        "value": "200ms ease",
+        "type": "string",
+        "description": "Transition timing"
+      }
+    }
+  }
+}

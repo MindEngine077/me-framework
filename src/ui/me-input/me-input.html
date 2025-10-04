@@ -1,33 +1,54 @@
 <!-- File: src/ui/me-input/me-input.html -->
-<!-- Component: MeInput -->
-<!-- Generated from Figma: ME | Components -->
-<!-- Customize this HTML based on your Figma design -->
+<!-- Component: MeInput - Semantic HTML Input Field -->
+<!-- Converted from Figma: ME | Components -->
 
-<div class="input">
-    <svg class="icons" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g clip-path="url(#clip0_27_13315)">
-            <path d="M6.46876 0.553552C6.37933 0.37906 6.19829 0.267822 6.00199 0.267822C5.80569 0.267822 5.62465 0.37906 5.53523 0.553552L3.92991 3.69876L0.442265 4.25277C0.248143 4.2833 0.0867389 4.42071 0.025667 4.60829C-0.0354049 4.79587 0.0147613 5.0009 0.152173 5.14049L2.6474 7.6379L2.09775 11.1255C2.06721 11.3197 2.14792 11.516 2.30714 11.6316C2.46636 11.7472 2.67575 11.7646 2.85242 11.6752L6.00199 10.0742L9.14938 11.6752C9.32387 11.7646 9.53544 11.7472 9.69466 11.6316C9.85388 11.516 9.93459 11.3218 9.90405 11.1255L9.35222 7.6379L11.8474 5.14049C11.987 5.0009 12.035 4.79587 11.974 4.60829C11.9129 4.42071 11.7537 4.2833 11.5574 4.25277L8.07189 3.69876L6.46876 0.553552Z" fill="var(--icon-color, #f0869d)" />
-        </g>
-        <defs>
-            <clipPath id="clip0_27_13315">
-                <rect width="12" height="12" fill="white" />
-            </clipPath>
-        </defs>
-    </svg>
-    <div class="placeholder"> Placeholder </div><svg class="icons2" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g clip-path="url(#clip0_27_13289)">
-            <path d="M6.46876 0.553552C6.37933 0.37906 6.19829 0.267822 6.00199 0.267822C5.80569 0.267822 5.62465 0.37906 5.53523 0.553552L3.92991 3.69876L0.442265 4.25277C0.248143 4.2833 0.0867389 4.42071 0.025667 4.60829C-0.0354049 4.79587 0.0147613 5.0009 0.152173 5.14049L2.6474 7.6379L2.09775 11.1255C2.06721 11.3197 2.14792 11.516 2.30714 11.6316C2.46636 11.7472 2.67575 11.7646 2.85242 11.6752L6.00199 10.0742L9.14938 11.6752C9.32387 11.7646 9.53544 11.7472 9.69466 11.6316C9.85388 11.516 9.93459 11.3218 9.90405 11.1255L9.35222 7.6379L11.8474 5.14049C11.987 5.0009 12.035 4.79587 11.974 4.60829C11.9129 4.42071 11.7537 4.2833 11.5574 4.25277L8.07189 3.69876L6.46876 0.553552Z" fill="var(--icon-color, #f0869d)" />
-        </g>
-        <defs>
-            <clipPath id="clip0_27_13289">
-                <rect width="12" height="12" fill="white" />
-            </clipPath>
-        </defs>
-    </svg>
+<!-- Basic input -->
+<div class="me-input">
+  <input type="text" class="me-input__field" placeholder="Placeholder" aria-label="Input field" />
+</div>
+
+<!-- Input with left icon (search example) -->
+<div class="me-input">
+  <svg class="me-input__icon-left" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M7.333 12.667A5.333 5.333 0 1 0 7.333 2a5.333 5.333 0 0 0 0 10.667ZM14 14l-2.9-2.9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+  <input type="search" class="me-input__field" placeholder="Search..." aria-label="Search" />
+</div>
+
+<!-- Input with label (best practice) -->
+<div class="me-input-group">
+  <label for="email-input" class="me-input__label">Email</label>
+  <div class="me-input">
+    <input type="email" id="email-input" class="me-input__field" placeholder="you@example.com" aria-label="Email address" aria-describedby="email-hint" />
+  </div>
+  <span id="email-hint" class="me-input__hint">We'll never share your email</span>
+</div>
+
+<!-- Input with error state -->
+<div class="me-input-group">
+  <label for="password-input" class="me-input__label">Password</label>
+  <div class="me-input me-input--error">
+    <input type="password" id="password-input" class="me-input__field" placeholder="Enter password" aria-label="Password" aria-invalid="true" aria-describedby="password-error" />
+  </div>
+  <span id="password-error" class="me-input__error">Password must be at least 8 characters</span>
+</div>
+
+<!-- Small variant -->
+<div class="me-input me-input--sm">
+  <input type="text" class="me-input__field" placeholder="Small input" />
+</div>
+
+<!-- Large variant -->
+<div class="me-input me-input--lg">
+  <input type="text" class="me-input__field" placeholder="Large input" />
+</div>
+
+<!-- Disabled state -->
+<div class="me-input me-input--disabled">
+  <input type="text" class="me-input__field" placeholder="Disabled input" disabled />
 </div>
 
 <!-- Usage Examples -->
 <!-- 
-<div class="me-input me-input--primary">Primary variant</div>
-<div class="me-input me-input--secondary">Secondary variant</div>
+See docs/FIGMA-INPUT-WORKFLOW.md for complete guide
 -->

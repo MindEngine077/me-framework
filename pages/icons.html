@@ -2,72 +2,45 @@
 <html lang="nl">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewp  </head>
+  <body class="page-container">
+    <div class="page-content">
+      <h1>🎭 Icon Viewer</h1>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-value" id="total-icons">0</div>
+          <div class="stat-label"      // Focus search on '/' key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "/" && e.target.tagName !== "INPUT") {
+          e.preventDefault();
+          searchInput.focus();
+        }
+      });
+    </script>
+    </div>
+  </body>
+</html>ns</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value" id="visible-icons">0</div>
+          <div class="stat-label">Visible</div>
+        </div>
+      </div>
+
+      <div class="search">
+        <input type="text" id="search-input" placeholder="Search icons... (e.g., calendar, user, arrow)" autocomplete="off" class="search-input" />
+      </div>h=device-width, initial-scale=1.0" />
     <title>Icon Viewer - ME Framework</title>
-    <link rel="stylesheet" href="src/styles/tokens.css" />
-    <link rel="stylesheet" href="src/styles/base.css" />
+    <link rel="stylesheet" href="../src/styles/tokens.css" />
+    <link rel="stylesheet" href="../src/styles/base.css" />
+    <link rel="stylesheet" href="../src/styles/theme-dark.css" />
+    <link rel="stylesheet" href="../src/styles/demo.css" />
     <style>
-      body {
+      /* Icon-specific styles only */
+      /* Icon-specific styles only */
+      .page-content {
         max-width: 1400px;
-        margin: 0 auto;
-        padding: var(--space-xl, 32px);
-        background: var(--background-base, #0a0a0f);
-        color: var(--text-primary, #ffffff);
-        font-family: var(--font-family-base, system-ui, -apple-system, sans-serif);
-      }
-
-      h1 {
-        font-size: var(--font-size-heading-xl, 2.5rem);
-        margin-bottom: var(--space-md, 16px);
-        color: var(--accent-primary, #5c6ef8);
-      }
-
-      .stats {
-        display: flex;
-        gap: var(--space-lg, 24px);
-        margin-bottom: var(--space-xl, 32px);
-        padding: var(--space-md, 16px);
-        background: var(--surface-raised, rgba(255, 255, 255, 0.05));
-        border-radius: var(--radius-md, 12px);
-        border: 1px solid var(--border-base, rgba(255, 255, 255, 0.12));
-      }
-
-      .stat {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-xs, 4px);
-      }
-
-      .stat-value {
-        font-size: var(--font-size-heading-md, 1.5rem);
-        font-weight: 600;
-        color: var(--accent-primary, #5c6ef8);
-      }
-
-      .stat-label {
-        font-size: var(--font-size-body-sm, 0.875rem);
-        color: var(--text-secondary, rgba(255, 255, 255, 0.7));
-      }
-
-      .search {
-        margin-bottom: var(--space-lg, 24px);
-      }
-
-      .search input {
-        width: 100%;
-        padding: var(--space-md, 16px);
-        font-size: var(--font-size-body-md, 1rem);
-        background: var(--surface-raised, rgba(255, 255, 255, 0.05));
-        border: 1px solid var(--border-base, rgba(255, 255, 255, 0.12));
-        border-radius: var(--radius-md, 12px);
-        color: var(--text-primary, #ffffff);
-        transition: all 120ms ease;
-      }
-
-      .search input:focus {
-        outline: none;
-        border-color: var(--accent-primary, #5c6ef8);
-        box-shadow: 0 0 0 3px rgba(92, 110, 248, 0.2);
       }
 
       .icon-grid {

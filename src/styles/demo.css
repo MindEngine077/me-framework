@@ -403,6 +403,25 @@ body {
    UTILITIES
    ============================================ */
 
+/* Text Colors */
+.text-primary {
+  color: var(--text-primary, #ffffff);
+}
+.text-secondary {
+  color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+}
+
+/* Text Sizes */
+.text-lg {
+  font-size: var(--font-size-lg, 1.125rem);
+}
+
+/* Workflow List */
+.workflow-list {
+  line-height: 1.8;
+}
+
+/* Text Alignment */
 .text-center {
   text-align: center;
 }

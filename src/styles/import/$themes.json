@@ -37,8 +37,18 @@
       "core_layout/core": "enabled",
       "core_border/core": "enabled",
       "semantic_layout/core": "enabled",
-      "semantic_color/core": "enabled"
+      "semantic_color/core": "enabled",
+      "component_input/core": "enabled"
     },
     "group": "Design System"
+  },
+  {
+    "id": "component_theme",
+    "name": "Components",
+    "$figmaStyleReferences": {},
+    "selectedTokenSets": {
+      "component_input/core": "enabled"
+    },
+    "group": "Components"
   }
 ]

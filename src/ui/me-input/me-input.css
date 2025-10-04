@@ -1,128 +1,211 @@
-/* File: src/ui/me-input/me-input.css
+/* ============================================
+   ME-INPUT - Semantic Input Component
    Component: me-input
-   Import design tokens and base styles
-*/
+   Converted from Figma: ME | Components
+   ============================================ */
 
 /* Import design tokens from Token Studio */
 @import "../../styles/tokens.css";
 @import "../../styles/base.css";
 
-.input,
-.input * {
-    box-sizing: border-box;
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+.me-input,
+.me-input * {
+  box-sizing: border-box;
 }
 
-.input {
-    background: var(--input-colors-color, #15242c);
-    border-radius: var(--input-layout-radius-base, 5px);
-    border-style: solid;
-    border-color: var(--input-colors-border-color, #29414e);
-    border-width: 1px;
-    padding: var(--input-layout-pad-y, 12px) var(--input-layout-pad-x, 24px) var(--input-layout-pad-y, 12px) var(--input-layout-pad-x, 24px);
-    display: flex;
-    flex-direction: row;
-    gap: var(--input-layout-gap, 16px);
-    align-items: center;
-    justify-content: flex-start;
-    width: 320px;
-    height: var(--input-layout-heigth, 48px);
-    position: relative;
-    box-shadow: var(--elevation-component-sm-box-shadow, 3px 3px 6px 0px rgba(0, 0, 0, 0.25));
-    overflow: hidden;
-}
-
-.icons {
-    flex-shrink: 0;
-    width: 12px;
-    height: var(--icon-xs, 12px);
-    position: relative;
-    overflow: visible;
-    aspect-ratio: 1;
-}
-
-.placeholder {
-    color: var(--input-colors-placeholder, #838995);
-    text-align: left;
-    font-family: var(--input-placeholder-font-family, 'NoirPro-Light', sans-serif);
-    font-size: var(--input-placeholder-font-size, 14px);
-    letter-spacing: var(--input-placeholder-letter-spacing, 0.5px);
-    font-weight: var(--input-placeholder-font-weight, 300);
-    position: relative;
-    flex: 1;
-}
-
-.icons2 {
-    flex-shrink: 0;
-    width: 12px;
-    height: var(--icon-xs, 12px);
-    position: relative;
-    overflow: visible;
-    aspect-ratio: 1;
-}
-
-/* Component styles - customize based on Figma design */
 .me-input {
   /* Layout */
-  display: inline-flex;
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  gap: var(--input-layout-gap);
+  position: relative;
+  width: 100%;
+  max-width: 320px;
 
-  /* Sizing - use tokens from Figma Variables */
-  height: var(--component-height-md, 44px);
-  min-width: var(--component-min-width, 44px);
-  padding-inline: var(--space-md, 16px);
+  /* Colors - Using semantic tokens */
+  background: var(--input-colors-background);
+  border: var(--input-layout-border-width) solid var(--input-colors-border-default);
+  border-radius: var(--input-layout-radius);
 
-  /* Colors - use semantic tokens */
-  background: var(--accent-primary, #5c6ef8);
-  color: var(--text-100, #ffffff);
-  border: 1px solid var(--border-base, rgba(255, 255, 255, 0.12));
-  
-  /* Border radius */
-  border-radius: var(--radius-md, 12px);
+  /* Sizing */
+  height: var(--input-layout-height-md);
+  padding: var(--input-layout-padding-y) var(--input-layout-padding-x);
 
-  /* Typography */
-  font-size: var(--font-size-body-md, 1rem);
-  letter-spacing: var(--letter-spacing-xxs, 0.01em);
-  line-height: 1;
-
-  /* Interactions */
-  cursor: pointer;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  transition: transform 120ms ease, filter 120ms ease, box-shadow 120ms ease;
+  /* Effects */
+  box-shadow: var(--elevation-component-sm-box-shadow, 3px 3px 6px 0px rgba(0, 0, 0, 0.25));
+  transition: all 200ms ease;
+  overflow: hidden;
 }
 
-/* Hover state */
+/* ============================================
+   INPUT FIELD
+   ============================================ */
+
+.me-input__field {
+  /* Reset */
+  all: unset;
+
+  /* Layout */
+  flex: 1;
+  width: 100%;
+
+  /* Typography - Using semantic tokens */
+  font-family: var(--input-typography-font-family);
+  font-size: var(--input-typography-font-size);
+  font-weight: var(--input-typography-font-weight);
+  letter-spacing: var(--input-typography-letter-spacing);
+  color: var(--input-colors-text);
+
+  /* Placeholder */
+  &::placeholder {
+    color: var(--input-colors-placeholder);
+  }
+
+  /* Selection */
+  &::selection {
+    background: var(--accent-primary);
+    color: var(--text-inverse);
+  }
+}
+
+/* ============================================
+   ICONS
+   ============================================ */
+
+.me-input__icon-left,
+.me-input__icon-right {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: var(--input-colors-icon);
+  transition: color var(--input-effects-transition);
+}
+
+/* ============================================
+   STATES
+   ============================================ */
+
+/* Hover */
 .me-input:hover {
-  filter: brightness(1.06);
+  border-color: var(--input-colors-border-hover);
 }
 
-/* Active state */
-.me-input:active {
-  transform: translateY(1px) scale(0.99);
+.me-input:hover .me-input__icon-left,
+.me-input:hover .me-input__icon-right {
+  color: var(--text-primary);
 }
 
-/* Focus styles */
-.me-input:focus {
-  outline: none;
+/* Focus */
+.me-input:focus-within {
+  border-color: var(--input-colors-border-focus);
+  box-shadow: var(--input-effects-shadow-default), var(--input-effects-shadow-focus);
 }
 
-.me-input:focus-visible {
-  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent-primary, #5c6ef8) 40%, transparent);
+.me-input:focus-within .me-input__icon-left,
+.me-input:focus-within .me-input__icon-right {
+  color: var(--input-colors-border-focus);
 }
 
-/* Internal elements */
-.me-input-label {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-sm, 8px);
+/* Error */
+.me-input--error {
+  border-color: var(--input-colors-border-error);
 }
 
-/* Variants - Add based on Figma component variants */
-/* Example:
-.me-input--primary { background: var(--accent-primary); }
-.me-input--secondary { background: var(--accent-secondary); }
-.me-input--ghost { background: transparent; }
-.me-input--small { height: var(--component-height-sm); }
-.me-input--large { height: var(--component-height-lg); }
-*/
+.me-input--error:focus-within {
+  box-shadow: var(--input-effects-shadow-default), 0 0 0 3px color-mix(in oklab, var(--semantic-error) 20%, transparent);
+}
+
+/* Success */
+.me-input--success {
+  border-color: var(--input-colors-border-success);
+}
+
+.me-input--success:focus-within {
+  box-shadow: var(--input-effects-shadow-default), 0 0 0 3px color-mix(in oklab, var(--semantic-success) 20%, transparent);
+}
+
+/* Disabled */
+.me-input--disabled,
+.me-input:has(.me-input__field:disabled) {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ============================================
+   VARIANTS - Size
+   ============================================ */
+
+.me-input--sm {
+  height: var(--input-layout-height-sm);
+  padding: var(--input-layout-padding-y) var(--input-layout-padding-x);
+}
+
+.me-input--sm .me-input__field {
+  font-size: calc(var(--input-typography-font-size) * 0.9);
+}
+
+.me-input--lg {
+  height: var(--input-layout-height-lg);
+  padding: calc(var(--input-layout-padding-y) * 1.3) calc(var(--input-layout-padding-x) * 1.2);
+}
+
+.me-input--lg .me-input__field {
+  font-size: calc(var(--input-typography-font-size) * 1.1);
+}
+
+/* ============================================
+   INPUT GROUP (Label + Input + Hint/Error)
+   ============================================ */
+
+.me-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs, 4px);
+  width: 100%;
+  max-width: 320px;
+}
+
+.me-input__label {
+  font-size: var(--font-size-body-sm);
+  font-weight: 500;
+  color: var(--input-colors-label);
+  margin-bottom: var(--space-xs);
+}
+
+.me-input__hint {
+  font-size: var(--font-size-body-xs);
+  color: var(--text-secondary);
+}
+
+.me-input__error {
+  font-size: var(--font-size-body-xs);
+  color: var(--input-colors-border-error);
+  font-weight: 500;
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .me-input {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .me-input,
+  .me-input__field,
+  .me-input__icon-left,
+  .me-input__icon-right {
+    transition: none;
+  }
+}
